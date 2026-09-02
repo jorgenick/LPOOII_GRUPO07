@@ -1,0 +1,35 @@
+﻿<Window x:Class="Vistas.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Bienvenido - Ingrese Usuario y Constraseña" Height="300" Width="400"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Iniciar Sesión" 
+                   FontSize="20" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Usuario:" VerticalAlignment="Center" Margin="5"/>
+        <TextBox x:Name="txtUsuario" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Contraseña:" VerticalAlignment="Center" Margin="5"/>
+        <PasswordBox x:Name="txtPassword" Grid.Row="2" Grid.Column="1" Margin="5"/>
+
+        <Button x:Name="btnIngresar" Grid.Row="3" Grid.ColumnSpan="2" Content="Ingresar" 
+                Width="100" Height="30" Margin="0,15,0,0" Click="btnclick_onClick"/>
+
+        <TextBlock x:Name="lblMensaje" Grid.Row="4" Grid.ColumnSpan="2" 
+                   Margin="0,10,0,0" HorizontalAlignment="Center" FontWeight="Bold"/>
+    </Grid>
+</Window>
