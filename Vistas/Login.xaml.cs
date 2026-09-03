@@ -20,11 +20,17 @@ namespace Vistas
             {
                 lblMensaje.Foreground = Brushes.Green;
                 lblMensaje.Text = "Acceso concedido como Administrador.";
+                MenuPrincipal ventana = new MenuPrincipal("Administrador");
+                ventana.Show();
+                this.Close();
             }
             else if (usuarioIngresado == "vendedor" && claveIngresada == "1234")
             {
                 lblMensaje.Foreground = Brushes.Blue;
                 lblMensaje.Text = "Acceso concedido como Vendedor.";
+                MenuPrincipal ventana = new MenuPrincipal("Vendedor");
+                ventana.Show();
+                this.Close();
             }
             else
             {

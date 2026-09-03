@@ -1,0 +1,23 @@
+﻿<Window x:Class="Vistas.MenuPrincipal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Bienvenido Menu Principal" Height="300" Width="400"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="81*" />
+            <ColumnDefinition Width="197*" />
+        </Grid.ColumnDefinitions>
+        <Label Content="Bienvenido" Height="28" HorizontalAlignment="Left" Margin="57,42,0,0" Name="lblRol" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+        <Grid Grid.ColumnSpan="2" Height="97" HorizontalAlignment="Left" Margin="37,76,0,0" Name="grid1" VerticalAlignment="Top" Width="302">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="46*" />
+                <RowDefinition Height="51*" />
+            </Grid.RowDefinitions>
+            <Button Content="Alta de Clientes" Height="23" HorizontalAlignment="Left" Margin="20,16,0,0" Name="btnClientes" VerticalAlignment="Top" Width="120" Click="button1_Click" />
+            <Button Content="Alta de Vendedores" Height="23" HorizontalAlignment="Right" Margin="0,8,6,0" Name="btnVendedor" VerticalAlignment="Top" Width="120" Click="btnVendedor_Click" Grid.Row="1" />
+            <Button Content="Alta de Productos" Height="23" HorizontalAlignment="Left" Margin="20,8,0,0" Name="btnProducto" VerticalAlignment="Top" Width="120" Click="btnProducto_Click" Grid.Row="1" />
+            <Button Content="Alta de Proveedores" Height="23" HorizontalAlignment="Right" Margin="0,16,6,0" Name="btnProvedor" VerticalAlignment="Top" Width="120" Click="btnProvedor_Click" />
+        </Grid>
+    </Grid>
+</Window>
