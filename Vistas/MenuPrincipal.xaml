@@ -23,5 +23,13 @@
             <Button Content="Alta de Productos" Height="23" HorizontalAlignment="Left" Margin="20,8,0,0" Name="btnProducto" VerticalAlignment="Top" Width="120" Click="btnProducto_Click" Grid.Row="1" />
             <Button Content="Alta de Proveedores" Height="23" HorizontalAlignment="Right" Margin="0,16,6,0" Name="btnProvedor" VerticalAlignment="Top" Width="120" Click="btnProvedor_Click" />
         </Grid>
+        <Button Content="Cerrar Sesion" Grid.Column="1" Height="20" HorizontalAlignment="Left" Margin="198,0,0,0" Name="button1" VerticalAlignment="Top" Width="70" FontSize="8" Foreground="White" FontWeight="Bold" Click="btn_CerrarSesion">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="Black" Offset="0" />
+                    <GradientStop Color="#FFA0190E" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>
