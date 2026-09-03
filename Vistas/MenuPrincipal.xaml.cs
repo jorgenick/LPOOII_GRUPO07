@@ -23,8 +23,14 @@ namespace Vistas
         public MenuPrincipal(string rol)
         {
             InitializeComponent();
+
+
             this.rol = rol;
             lblRol.Content = "Rol: " + rol;
+            System.Console.WriteLine("==============Log info rol ingresado:" + rol + "==============");
+            if (rol.ToLower().Equals("vendedor")) {
+                this.btnVendedor.Visibility = System.Windows.Visibility.Hidden;
+            }
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

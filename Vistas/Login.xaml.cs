@@ -18,18 +18,17 @@ namespace Vistas
 
             if (usuarioIngresado == "admin" && claveIngresada == "1234")
             {
-                lblMensaje.Foreground = Brushes.Green;
-                lblMensaje.Text = "Acceso concedido como Administrador.";
-                MenuPrincipal ventana = new MenuPrincipal("Administrador");
-                ventana.Show();
+                /*lblMensaje.Foreground = Brushes.Green;
+                lblMensaje.Text = "Acceso concedido como Administrador.";*/
+                mostrarMenuPrincipal("Administrador");
                 this.Close();
             }
             else if (usuarioIngresado == "vendedor" && claveIngresada == "1234")
             {
-                lblMensaje.Foreground = Brushes.Blue;
-                lblMensaje.Text = "Acceso concedido como Vendedor.";
-                MenuPrincipal ventana = new MenuPrincipal("Vendedor");
-                ventana.Show();
+                /*lblMensaje.Foreground = Brushes.Blue;
+                lblMensaje.Text = "Acceso concedido como Vendedor.";*/
+                mostrarMenuPrincipal("Vendedor");
+
                 this.Close();
             }
             else
@@ -37,6 +36,13 @@ namespace Vistas
                 lblMensaje.Foreground = Brushes.Red;
                 lblMensaje.Text = "Usuario o contraseña incorrectos.";
             }
+
+        }
+
+        void mostrarMenuPrincipal(String rol)
+        {
+            MenuPrincipal ventana = new MenuPrincipal(rol);
+            ventana.Show();
         }
     }
 }
