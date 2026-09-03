@@ -1,0 +1,77 @@
+﻿<Window x:Class="Vistas.AltaVendedor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ABM de (Vendedores)" Height="350" Width="630"
+        WindowStartupLocation="CenterScreen"
+        Background="White">
+
+    <Window.Resources>
+        <Style x:Key="BotonBase" TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6,4"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        <Style x:Key="BotonRojo" TargetType="Button" BasedOn="{StaticResource BotonBase}">
+            <Setter Property="Foreground" Value="#C00000"/>
+            <Setter Property="BorderBrush" Value="#C00000"/>
+        </Style>
+        <Style x:Key="BotonAzul" TargetType="Button" BasedOn="{StaticResource BotonBase}">
+            <Setter Property="Foreground" Value="#0033CC"/>
+            <Setter Property="BorderBrush" Value="#808080"/>
+        </Style>
+        <Style x:Key="BotonVerde" TargetType="Button" BasedOn="{StaticResource BotonBase}">
+            <Setter Property="Foreground" Value="#008000"/>
+            <Setter Property="BorderBrush" Value="#808080"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#ECE9D8"/>
+            <Setter Property="BorderBrush" Value="#808080"/>
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="Width" Value="180"/>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel Margin="10">
+        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="0,0,0,20">
+            <Button x:Name="btnNuevo" Content="Nuevo" Style="{StaticResource BotonRojo}" Click="btnNuevo_Click"/>
+            <Button x:Name="btnModificar" Content="Modificar" Style="{StaticResource BotonRojo}"/>
+            <Button x:Name="btnEliminar" Content="Eliminar" Style="{StaticResource BotonRojo}"/>
+            <Button x:Name="btnGuardar" Content="Guardar" Style="{StaticResource BotonAzul}" IsEnabled="False" Click="btnGuardar_Click"/>
+            <Button x:Name="btnCancelar" Content="Cancelar" Style="{StaticResource BotonAzul}" IsEnabled="False" Click="btnCancelar_Click"/>
+            <Button x:Name="btnPrimero" Content="Primero" Style="{StaticResource BotonVerde}"/>
+            <Button x:Name="btnAnterior" Content="Anterior" Style="{StaticResource BotonVerde}"/>
+            <Button x:Name="btnSiguiente" Content="Siguiente" Style="{StaticResource BotonVerde}"/>
+            <Button x:Name="btnUltimo" Content="Último" Style="{StaticResource BotonVerde}"/>
+        </WrapPanel>
+
+        <Button x:Name="btnSalir" DockPanel.Dock="Bottom" Content="Salir" Width="90" Height="28"
+                HorizontalAlignment="Right" Margin="0,15,0,0"
+                Background="#0033CC" Foreground="White" FontWeight="Bold"
+                Click="btnSalir_Click"/>
+
+        <Grid VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Legajo" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBox x:Name="txtLegajo" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Apellido" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBox x:Name="txtApellido" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False"/>
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Nombre" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBox x:Name="txtNombre" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False"/>
+        </Grid>
+    </DockPanel>
+</Window>

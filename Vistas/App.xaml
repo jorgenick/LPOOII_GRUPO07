@@ -2,6 +2,15 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="Login.xaml">
+
+    <!-- Testeo PA
+    StartupUri="Login.xaml"
+    StartupUri="AltaProveedor.xaml"
+    StartupUri="AltaCliente.xaml"
+    StartupUri="AltaProducto.xaml"
+    StartupUri="AltaVendedor.xaml"
+    -->
+    
     <Application.Resources>
          
     </Application.Resources>

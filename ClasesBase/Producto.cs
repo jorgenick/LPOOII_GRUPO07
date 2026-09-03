@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ClasesBase
 {
-    class Producto
+    public class Producto
     {
         public string CodProducto { get; set; }
         public string Categoria { get; set; }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ClasesBase
 {
-    class Cliente
+    public class Cliente
     {
         public string DNI { get; set; }
         public string Apellido { get; set; }
