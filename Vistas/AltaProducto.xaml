@@ -5,34 +5,6 @@
         WindowStartupLocation="CenterScreen"
         Background="White">
 
-    <Window.Resources>
-        <Style x:Key="BotonBase" TargetType="Button">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="6,4"/>
-            <Setter Property="Margin" Value="3"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-        </Style>
-        <Style x:Key="BotonRojo" TargetType="Button" BasedOn="{StaticResource BotonBase}">
-            <Setter Property="Foreground" Value="#C00000"/>
-            <Setter Property="BorderBrush" Value="#C00000"/>
-        </Style>
-        <Style x:Key="BotonAzul" TargetType="Button" BasedOn="{StaticResource BotonBase}">
-            <Setter Property="Foreground" Value="#0033CC"/>
-            <Setter Property="BorderBrush" Value="#808080"/>
-        </Style>
-        <Style x:Key="BotonVerde" TargetType="Button" BasedOn="{StaticResource BotonBase}">
-            <Setter Property="Foreground" Value="#008000"/>
-            <Setter Property="BorderBrush" Value="#808080"/>
-        </Style>
-        <Style TargetType="TextBox">
-            <Setter Property="Background" Value="#ECE9D8"/>
-            <Setter Property="BorderBrush" Value="#808080"/>
-            <Setter Property="Padding" Value="3"/>
-            <Setter Property="Width" Value="180"/>
-        </Style>
-    </Window.Resources>
-
     <DockPanel Margin="10">
         <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="0,0,0,20">
             <Button x:Name="btnNuevo" Content="Nuevo" Style="{StaticResource BotonRojo}" Click="btnNuevo_Click"/>
@@ -69,19 +41,19 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Cód. Producto" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <TextBox x:Name="txtCodProducto" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False"/>
+            <TextBox x:Name="txtCodProducto" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
 
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Categoría" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <TextBox x:Name="txtCategoria" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False"/>
+            <TextBox x:Name="txtCategoria" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
 
             <TextBlock Grid.Row="4" Grid.Column="0" Text="Color" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <TextBox x:Name="txtColor" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False"/>
+            <TextBox x:Name="txtColor" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
 
             <TextBlock Grid.Row="6" Grid.Column="0" Text="Descripción" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <TextBox x:Name="txtDescripcion" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False"/>
+            <TextBox x:Name="txtDescripcion" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
 
             <TextBlock Grid.Row="8" Grid.Column="0" Text="Precio" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <TextBox x:Name="txtPrecio" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False"/>
+            <TextBox x:Name="txtPrecio" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
         </Grid>
     </DockPanel>
 </Window>
