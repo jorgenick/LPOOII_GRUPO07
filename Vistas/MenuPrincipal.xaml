@@ -23,5 +23,19 @@
                 <Button x:Name="btnVendedor" Content="Alta de Vendedores" Style="{StaticResource BotonMenu}" Click="btnVendedor_Click"/>
             </UniformGrid>
         </StackPanel>
+        <Button Content="Cerrar Sesion" Height="23" HorizontalAlignment="Left" Margin="352,-25,0,0" Name="button1" VerticalAlignment="Top" Width="86" Click="btn_CerrarSesion" Foreground="#FFEFEFEF" FontWeight="Bold" FontSize="10">
+            <Button.BorderBrush>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="Black" Offset="0" />
+                    <GradientStop Color="White" Offset="1" />
+                </LinearGradientBrush>
+            </Button.BorderBrush>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="Black" Offset="0" />
+                    <GradientStop Color="#FFFC7474" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

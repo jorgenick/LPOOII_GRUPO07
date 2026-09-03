@@ -28,7 +28,8 @@ namespace Vistas
             this.rol = rol;
             lblRol.Content = "Rol: " + rol;
             System.Console.WriteLine("==============Log info rol ingresado:" + rol + "==============");
-            if (rol.ToLower().Equals("vendedor")) {
+            if (rol.ToLower().Equals("vendedor"))
+            {
                 this.btnVendedor.Visibility = System.Windows.Visibility.Hidden;
             }
         }
@@ -60,5 +61,22 @@ namespace Vistas
             ventana.Show();
             //this.Close();
         }
+
+        private void btn_CerrarSesion(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult resultado = MessageBox.Show(
+            "¿Está seguro que desea cerrar la sesión?", "Confirmar Cierre de Sesión",
+          MessageBoxButton.YesNo,
+          MessageBoxImage.Question
+            );
+
+            if (resultado == MessageBoxResult.Yes)
+            {
+                Login ventanaLogin = new Login();
+                ventanaLogin.Show();
+                this.Close();
+            }
+        }
+
     }
 }
