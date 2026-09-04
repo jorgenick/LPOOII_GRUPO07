@@ -10,8 +10,60 @@
     StartupUri="AltaProducto.xaml"
     StartupUri="AltaVendedor.xaml"
     -->
-    
+
     <Application.Resources>
-         
+        <!-- Estilos para ABM -->
+        <Style x:Key="BotonBase" TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6,4"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        <Style x:Key="BotonRojo" TargetType="Button" BasedOn="{StaticResource BotonBase}">
+            <Setter Property="Foreground" Value="#C00000"/>
+            <Setter Property="BorderBrush" Value="#C00000"/>
+        </Style>
+        <Style x:Key="BotonAzul" TargetType="Button" BasedOn="{StaticResource BotonBase}">
+            <Setter Property="Foreground" Value="#0033CC"/>
+            <Setter Property="BorderBrush" Value="#808080"/>
+        </Style>
+        <Style x:Key="BotonVerde" TargetType="Button" BasedOn="{StaticResource BotonBase}">
+            <Setter Property="Foreground" Value="#008000"/>
+            <Setter Property="BorderBrush" Value="#808080"/>
+        </Style>
+        <Style x:Key="TextBoxABM" TargetType="TextBox">
+            <Setter Property="Background" Value="#ECE9D8"/>
+            <Setter Property="BorderBrush" Value="#808080"/>
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="Width" Value="180"/>
+        </Style>
+
+        <!-- Estilos para Login y Menú Principal -->
+
+        <Style x:Key="BotonPrincipal" TargetType="Button">
+            <Setter Property="Background" Value="#5C3A21"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style x:Key="BotonMenu" TargetType="Button" BasedOn="{StaticResource BotonPrincipal}">
+            <Setter Property="Width" Value="160"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <Style x:Key="CampoLogin" TargetType="Control">
+            <Setter Property="Background" Value="#F9F5EF"/>
+            <Setter Property="BorderBrush" Value="#8B5E3C"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
     </Application.Resources>
 </Application>

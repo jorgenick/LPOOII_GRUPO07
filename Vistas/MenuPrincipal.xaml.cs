@@ -65,9 +65,9 @@ namespace Vistas
         private void btn_CerrarSesion(object sender, RoutedEventArgs e)
         {
             MessageBoxResult resultado = MessageBox.Show(
-                "¿Está seguro que desea cerrar la sesión?", "Confirmar Cierre de Sesión",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question
+            "¿Está seguro que desea cerrar la sesión?", "Confirmar Cierre de Sesión",
+          MessageBoxButton.YesNo,
+          MessageBoxImage.Question
             );
 
             if (resultado == MessageBoxResult.Yes)
@@ -76,7 +76,6 @@ namespace Vistas
                 ventanaLogin.Show();
                 this.Close();
             }
-
         }
 
     }
