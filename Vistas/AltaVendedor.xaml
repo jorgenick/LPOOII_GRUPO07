@@ -18,10 +18,8 @@
             <Button x:Name="btnUltimo" Content="Último" Style="{StaticResource BotonVerde}"/>
         </WrapPanel>
 
-        <Button x:Name="btnSalir" DockPanel.Dock="Bottom" Content="Salir" Width="90" Height="28"
-                HorizontalAlignment="Right" Margin="0,15,0,0"
-                Background="#0033CC" Foreground="White" FontWeight="Bold"
-                Click="btnSalir_Click"/>
+        <Button x:Name="btnSalir" DockPanel.Dock="Bottom" Content="Salir" Style="{StaticResource BotonSalir}" HorizontalAlignment="Right"
+        Click="btnSalir_Click"/>
 
         <Grid VerticalAlignment="Center">
             <Grid.RowDefinitions>
