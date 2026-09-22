@@ -13,8 +13,8 @@ namespace Vistas
 
         private void btnclick_onClick(object sender, RoutedEventArgs e)
         {
-            string usuarioIngresado = txtUsuario.Text.Trim();
-            string claveIngresada = txtPassword.Password;
+            string usuarioIngresado = login.Usuario;
+            string claveIngresada = login.Contraseña;
 
             if (usuarioIngresado == "admin" && claveIngresada == "1234")
             {
