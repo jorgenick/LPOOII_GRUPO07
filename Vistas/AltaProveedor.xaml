@@ -46,8 +46,7 @@
         <TextBox x:Name="txtTelefono" Grid.Row="4" Grid.Column="1" Margin="5" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
 
         <!-- Salir -->
-        <Button x:Name="btnSalir" Grid.Row="6" Grid.Column="1" Content="Salir" Width="90" Height="28"
-                HorizontalAlignment="Right" Background="#0033CC" Foreground="White" FontWeight="Bold"
+        <Button x:Name="btnSalir" Grid.Row="6" Grid.Column="1" Content="Salir" Style="{StaticResource BotonSalir}"
                 Click="btnSalir_Click"/>
-    </Grid>
+        </Grid>
 </Window>
