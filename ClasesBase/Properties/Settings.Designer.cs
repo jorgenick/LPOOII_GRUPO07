@@ -26,8 +26,8 @@ namespace ClasesBase.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;AttachDbFilename=C:\\BD_LPOO2\\muebleria.mdf;Integrated Se" +
-            "curity=True;Connect Timeout=30;User Instance=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;AttachDbFilename=C:\\DEV\\LPOOII_GRUPO07\\muebleria.mdf;Int" +
+            "egrated Security=True;Connect Timeout=30;User Instance=True")]
         public string muebleriaConnectionString {
             get {
                 return ((string)(this["muebleriaConnectionString"]));
