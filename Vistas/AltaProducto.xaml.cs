@@ -123,5 +123,11 @@ namespace Vistas
         {
             this.Close();
         }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            ListaDeEstados test = new ListaDeEstados();
+            test.Show();
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace Vistas
         public Login()
         {
             InitializeComponent();
+
         }
 
         private void btnclick_onClick(object sender, RoutedEventArgs e)

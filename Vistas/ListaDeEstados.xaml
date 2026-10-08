@@ -1,0 +1,24 @@
+﻿<Window x:Class="Vistas.ListaDeEstados"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Vistas"
+        Title="ListaDeEstados" Height="300" Width="300">
+    <Window.Resources>
+        <XmlDataProvider x:Key="DatosXml" Source="Estados.xml" XPath="Facturas/Estado"/>
+
+        <local:ConversorDeEstados x:Key="MiConversorDeColor"/>
+    </Window.Resources>
+
+    <StackPanel Margin="20">
+
+        <TextBlock Text="Seleccione el estado de la factura:" Margin="0,0,0,10"/>
+
+        <ListBox x:Name="lstEstados"
+                 Height="100"
+                 ItemsSource="{Binding Source={StaticResource DatosXml}}"/>
+
+        <Rectangle Width="150" Height="100" Margin="0,20,0,0" Stroke="Black" StrokeThickness="1"
+                   Fill="{Binding ElementName=lstEstados, Path=SelectedItem.InnerText, Converter={StaticResource MiConversorDeColor}}"/>
+
+    </StackPanel>
+</Window>

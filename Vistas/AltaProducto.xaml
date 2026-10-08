@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Vistas.AltaProducto"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="ABM de (Productos)" Height="400" Width="646"
+        Title="ABM de (Productos)" Height="442" Width="768"
         WindowStartupLocation="CenterScreen"
         Background="White">
 
@@ -16,6 +16,7 @@
             <Button x:Name="btnAnterior" Content="Anterior" Style="{StaticResource BotonVerde}"/>
             <Button x:Name="btnSiguiente" Content="Siguiente" Style="{StaticResource BotonVerde}"/>
             <Button x:Name="btnUltimo" Content="Último" Style="{StaticResource BotonVerde}"/>
+            <Button Content="Estados" Name="button1" Style="{StaticResource BotonVerde}" Click="button1_Click" />
         </WrapPanel>
 
         <Button x:Name="btnSalir" DockPanel.Dock="Bottom" Content="Salir" Style="{StaticResource BotonSalir}" HorizontalAlignment="Right"

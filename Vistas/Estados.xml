@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Facturas>
+  <Estado>PENDIENTE</Estado>
+  <Estado>PAGADA</Estado>
+  <Estado>CONTABILIZADA</Estado>
+  <Estado>ANULADA</Estado>
+</Facturas>
