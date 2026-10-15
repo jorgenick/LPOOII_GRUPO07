@@ -129,5 +129,11 @@ namespace Vistas
             ListaDeEstados test = new ListaDeEstados();
             test.Show();
         }
+
+        private void btnVerProductos_Click(object sender, RoutedEventArgs e)
+        {
+            ListadoProductos listado = new ListadoProductos();
+            listado.ShowDialog();
+        }
     }
 }
