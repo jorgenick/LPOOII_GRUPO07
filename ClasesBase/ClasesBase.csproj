@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="Proveedor.cs" />
     <Compile Include="TrabajarProductos.cs" />
+    <Compile Include="TrabajarVendedores.cs" />
     <Compile Include="Vendedor.cs" />
     <Compile Include="Venta.cs" />
   </ItemGroup>
