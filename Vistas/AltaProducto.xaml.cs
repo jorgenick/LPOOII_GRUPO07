@@ -25,6 +25,9 @@ namespace Vistas
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
+            oProducto = new Producto();
+            this.DataContext = oProducto;
+
             txtCodProducto.Text = "";
             txtCategoria.Text = "";
             txtColor.Text = "";
@@ -51,21 +54,19 @@ namespace Vistas
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
+            if (Validation.GetHasError(txtCodProducto) || Validation.GetHasError(txtCategoria) || Validation.GetHasError(txtColor) || Validation.GetHasError(txtDescripcion) || Validation.GetHasError(txtPrecio))
+                   {
+                       MessageBox.Show("Error al Guardar revise los campos en rojo", "Datos Invalidos", MessageBoxButton.OK, MessageBoxImage.Warning);
+                       return;
+                   }
+  
             MessageBoxResult confirmacion = MessageBox.Show(
                 "¿Confirma guardar los datos ingresados?",
                 "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (confirmacion == MessageBoxResult.Yes)
             {
-                // Nota: Producto.Precio está definido como string en tu clase actual.
-                // Si la cambiás a decimal, acá habría que parsear con decimal.Parse(txtPrecio.Text).
-                oProducto = new Producto(
-                    txtCodProducto.Text,
-                    txtCategoria.Text,
-                    txtColor.Text,
-                    txtDescripcion.Text,
-                    txtPrecio.Text);
-
+                
                 MessageBox.Show(
                     "Cód. Producto: " + oProducto.CodProducto +
                     "\nCategoría: " + oProducto.Categoria +
@@ -95,11 +96,8 @@ namespace Vistas
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            txtCodProducto.Text = "";
-            txtCategoria.Text = "";
-            txtColor.Text = "";
-            txtDescripcion.Text = "";
-            txtPrecio.Text = "";
+            oProducto = null;
+            this.DataContext = oProducto;
 
             txtCodProducto.IsEnabled = false;
             txtCategoria.IsEnabled = false;
