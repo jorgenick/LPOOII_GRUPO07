@@ -1,0 +1,27 @@
+﻿<Window x:Class="Vistas.ListadoProductos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Listado de Productos" Height="420" Width="720"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
+
+    <DockPanel Margin="10">
+        <TextBlock DockPanel.Dock="Top" Text="Productos registrados"
+                   FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        <Button x:Name="btnSalir" DockPanel.Dock="Bottom" Content="Salir"
+                Style="{StaticResource BotonSalir}" HorizontalAlignment="Right"
+                Margin="0,10,0,0" Click="btnSalir_Click"/>
+
+        <DataGrid x:Name="dgProductos" AutoGenerateColumns="False"
+                  IsReadOnly="True" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Código"      Binding="{Binding CodProducto}" Width="100"/>
+                <DataGridTextColumn Header="Categoría"   Binding="{Binding Categoria}"   Width="120"/>
+                <DataGridTextColumn Header="Color"       Binding="{Binding Color}"       Width="100"/>
+                <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}" Width="*"/>
+                <DataGridTextColumn Header="Precio"      Binding="{Binding Precio}"      Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>       
+</Window>
