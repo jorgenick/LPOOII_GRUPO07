@@ -6,7 +6,7 @@
         Background="White">
 
     <DockPanel Margin="10">
-        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="0,0,0,20">
+        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="0,0,0,20" Width="760">
             <Button x:Name="btnNuevo" Content="Nuevo" Style="{StaticResource BotonRojo}" Click="btnNuevo_Click"/>
             <Button x:Name="btnModificar" Content="Modificar" Style="{StaticResource BotonRojo}"/>
             <Button x:Name="btnEliminar" Content="Eliminar" Style="{StaticResource BotonRojo}"/>
@@ -17,6 +17,7 @@
             <Button x:Name="btnSiguiente" Content="Siguiente" Style="{StaticResource BotonVerde}"/>
             <Button x:Name="btnUltimo" Content="Último" Style="{StaticResource BotonVerde}"/>
             <Button Content="Estados" Name="button1" Style="{StaticResource BotonVerde}" Click="button1_Click" />
+            <Button x:Name="btnVerProductos" Content="Ver Productos" Style="{StaticResource BotonVerde}" Click="btnVerProductos_Click" />
         </WrapPanel>
 
         <Button x:Name="btnSalir" DockPanel.Dock="Bottom" Content="Salir" Style="{StaticResource BotonSalir}" HorizontalAlignment="Right"
