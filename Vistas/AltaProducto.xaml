@@ -40,19 +40,19 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Cód. Producto" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <TextBox x:Name="txtCodProducto" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+            <TextBox x:Name="txtCodProducto" Text="{Binding Path=CodProducto, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
 
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Categoría" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <TextBox x:Name="txtCategoria" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+            <TextBox x:Name="txtCategoria" Text="{Binding Path=Categoria, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
 
             <TextBlock Grid.Row="4" Grid.Column="0" Text="Color" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <TextBox x:Name="txtColor" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+            <TextBox x:Name="txtColor" Text="{Binding Path=Color, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
 
             <TextBlock Grid.Row="6" Grid.Column="0" Text="Descripción" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <TextBox x:Name="txtDescripcion" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+            <TextBox x:Name="txtDescripcion" Text="{Binding Path=Descripcion, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
 
             <TextBlock Grid.Row="8" Grid.Column="0" Text="Precio" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <TextBox x:Name="txtPrecio" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+            <TextBox x:Name="txtPrecio" Text="{Binding Path=Precio, ValidatesOnDataErrors=True, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
         </Grid>
     </DockPanel>
 </Window>
