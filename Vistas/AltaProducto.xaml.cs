@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.SqlClient; //Importa el espacio de nombres donde viven las clases para hablar con SQL Server
 using ClasesBase;
 
 namespace Vistas
@@ -67,32 +68,47 @@ namespace Vistas
             if (confirmacion == MessageBoxResult.Yes)
             {
                 
-                MessageBox.Show(
-                    "Cód. Producto: " + oProducto.CodProducto +
-                    "\nCategoría: " + oProducto.Categoria +
-                    "\nColor: " + oProducto.Color +
-                    "\nDescripción: " + oProducto.Descripcion +
-                    "\nPrecio: " + oProducto.Precio,
-                    "Datos almacenados en el objeto");
+                try
+                {
+                    int filas = TrabajarProductos.InsertarProducto(oProducto);
 
-                txtCodProducto.IsEnabled = false;
-                txtCategoria.IsEnabled = false;
-                txtColor.IsEnabled = false;
-                txtDescripcion.IsEnabled = false;
-                txtPrecio.IsEnabled = false;
+                    if (filas == 1)
+                    {
+                        MessageBox.Show("Producto guardado correctamente.", "Alta",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
 
-                btnGuardar.IsEnabled = false;
-                btnCancelar.IsEnabled = false;
 
-                btnNuevo.IsEnabled = true;
-                btnModificar.IsEnabled = true;
-                btnEliminar.IsEnabled = true;
-                btnPrimero.IsEnabled = true;
-                btnAnterior.IsEnabled = true;
-                btnSiguiente.IsEnabled = true;
-                btnUltimo.IsEnabled = true;
-            }
-        }
+                        txtCodProducto.IsEnabled = false;
+                        txtCategoria.IsEnabled = false;
+                        txtColor.IsEnabled = false;
+                        txtDescripcion.IsEnabled = false;
+                        txtPrecio.IsEnabled = false;
+
+                        btnGuardar.IsEnabled = false;
+                        btnCancelar.IsEnabled = false;
+
+                        btnNuevo.IsEnabled = true;
+                        btnModificar.IsEnabled = true;
+                        btnEliminar.IsEnabled = true;
+                        btnPrimero.IsEnabled = true;
+                        btnAnterior.IsEnabled = true;
+                        btnSiguiente.IsEnabled = true;
+                        btnUltimo.IsEnabled = true;
+
+                   }
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 2627 || ex.Number == 2601)
+                        MessageBox.Show("Ya existe un producto con ese código.", "Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                    else
+                        MessageBox.Show("Error al guardar: " + ex.Message, "Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+
+                }
+           }//if
+        }//btnGuardar
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {

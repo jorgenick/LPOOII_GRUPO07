@@ -27,5 +27,26 @@ namespace ClasesBase
 
             return dt;
         }
+
+        public static int InsertarProducto(Producto oProducto)
+        {
+            string sql = "INSERT INTO Producto (CodProducto, Categoria, Color, Descripcion, Precio) " +
+                         "VALUES (@CodProducto, @Categoria, @Color, @Descripcion, @Precio)";
+
+            using (SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.muebleriaConnectionString))
+            using (SqlCommand cmd = new SqlCommand(sql, cnn))
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@CodProducto", oProducto.CodProducto);
+                cmd.Parameters.AddWithValue("@Categoria", oProducto.Categoria);
+                cmd.Parameters.AddWithValue("@Color", oProducto.Color);
+                cmd.Parameters.AddWithValue("@Descripcion", oProducto.Descripcion);
+                cmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = oProducto.Precio;
+
+                cnn.Open();
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
     }
 }
