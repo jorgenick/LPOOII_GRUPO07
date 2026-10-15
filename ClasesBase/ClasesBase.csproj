@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="Proveedor.cs" />
     <Compile Include="TrabajarProductos.cs" />
+    <Compile Include="TrabajarVendedores.cs" />
     <Compile Include="Vendedor.cs" />
     <Compile Include="Venta.cs" />
   </ItemGroup>
@@ -96,12 +97,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="muebleria.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="muebleria.mdf" />
     <Content Include="muebleria_log.LDF">
       <DependentUpon>muebleria.mdf</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

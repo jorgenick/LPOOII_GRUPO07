@@ -8,14 +8,15 @@
     <DockPanel Margin="10">
         <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="0,0,0,20">
             <Button x:Name="btnNuevo" Content="Nuevo" Style="{StaticResource BotonRojo}" Click="btnNuevo_Click"/>
-            <Button x:Name="btnModificar" Content="Modificar" Style="{StaticResource BotonRojo}"/>
-            <Button x:Name="btnEliminar" Content="Eliminar" Style="{StaticResource BotonRojo}"/>
+            <Button x:Name="btnModificar" Content="Modificar" Style="{StaticResource BotonRojo}" Click="btnModificar_Click" />
+            <Button x:Name="btnEliminar" Content="Eliminar" Style="{StaticResource BotonRojo}" Click="btnEliminar_Click" />
             <Button x:Name="btnGuardar" Content="Guardar" Style="{StaticResource BotonAzul}" IsEnabled="False" Click="btnGuardar_Click"/>
             <Button x:Name="btnCancelar" Content="Cancelar" Style="{StaticResource BotonAzul}" IsEnabled="False" Click="btnCancelar_Click"/>
-            <Button x:Name="btnPrimero" Content="Primero" Style="{StaticResource BotonVerde}"/>
-            <Button x:Name="btnAnterior" Content="Anterior" Style="{StaticResource BotonVerde}"/>
-            <Button x:Name="btnSiguiente" Content="Siguiente" Style="{StaticResource BotonVerde}"/>
-            <Button x:Name="btnUltimo" Content="Último" Style="{StaticResource BotonVerde}"/>
+
+            <Button x:Name="btnPrimero" Content="Primero" Style="{StaticResource BotonVerde}" Click="btnPrimero_Click" />
+            <Button x:Name="btnAnterior" Content="Anterior" Style="{StaticResource BotonVerde}" Click="btnAnterior_Click" />
+            <Button x:Name="btnSiguiente" Content="Siguiente" Style="{StaticResource BotonVerde}" Click="btnSiguiente_Click" />
+            <Button x:Name="btnUltimo" Content="Último" Style="{StaticResource BotonVerde}" Click="btnUltimo_Click" />
         </WrapPanel>
 
         <Button x:Name="btnSalir" DockPanel.Dock="Bottom" Content="Salir" Style="{StaticResource BotonSalir}" HorizontalAlignment="Right"
@@ -35,13 +36,13 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Legajo" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <TextBox x:Name="txtLegajo" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+            <TextBox x:Name="txtLegajo" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}" Text="{Binding Legajo, UpdateSourceTrigger=PropertyChanged}" MaxLength="10" />
 
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Apellido" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <TextBox x:Name="txtApellido" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+            <TextBox x:Name="txtApellido" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}" Text="{Binding Apellido, UpdateSourceTrigger=PropertyChanged}" MaxLength="50" />
 
             <TextBlock Grid.Row="4" Grid.Column="0" Text="Nombre" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <TextBox x:Name="txtNombre" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+            <TextBox x:Name="txtNombre" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}" Text="{Binding Nombre, UpdateSourceTrigger=PropertyChanged}" MaxLength="50" />
         </Grid>
     </DockPanel>
 </Window>

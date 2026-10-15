@@ -11,6 +11,7 @@ namespace ClasesBase
         public string Apellido { get; set; }
         public string Nombre { get; set; }
 
+        public Vendedor() { }
 
         public Vendedor(string legajo, string apellido, string nombre)
         {
