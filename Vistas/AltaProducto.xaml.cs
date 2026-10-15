@@ -56,7 +56,7 @@ namespace Vistas
                 vista.MoveCurrentTo(encontrado);
         }
 
-        private void HabilitarEdicion(bool editando) //resumen para habilitar 
+        private void HabilitarEdicion(bool editando) //me ahorra el trabajo de habilitar a cada rato 
         {
             txtCodProducto.IsEnabled = editando;
             txtCategoria.IsEnabled = editando;
