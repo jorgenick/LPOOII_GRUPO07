@@ -84,5 +84,11 @@ namespace Vistas
             }
         }
 
+        private void btnListadoClientes_Click(object sender, RoutedEventArgs e)
+        {
+            ListadoClientes ventanaListadoClientes = new ListadoClientes();
+            ventanaListadoClientes.Show();
+        }
+
     }
 }

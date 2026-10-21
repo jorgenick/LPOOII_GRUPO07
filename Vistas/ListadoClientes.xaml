@@ -3,6 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="ListadoClientes" Height="336" Width="445">
     <Grid>
-        <DataGrid AutoGenerateColumns="False" Height="209" HorizontalAlignment="Left" Margin="12,73,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="338" SelectionChanged="dataGrid1_SelectionChanged" />
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Loaded="dataGridClientes_Loaded" Name="dataGridClientes">
+
+        <DataGrid.Columns>
+                <DataGridTextColumn Header="DNI" Binding="{Binding ClienteDNI}" Width="80"/>
+                <DataGridTextColumn Header="Apellido" Binding="{Binding Apellido}" Width="*"/>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="150"/>
+                <DataGridTextColumn Header="Dirección" Binding="{Binding Direccion}" Width="150"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

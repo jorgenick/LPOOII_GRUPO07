@@ -10,6 +10,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClasesBase;
+using System.Data;
 
 namespace Vistas
 {
@@ -22,5 +24,18 @@ namespace Vistas
         {
             InitializeComponent();
         }
+
+        private void dataGridClientes_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataTable tableClientes = TrabajarClientes.TraerClientesDataTable();
+            dataGridClientes.ItemsSource = tableClientes.DefaultView;
+        }
+
+       
+
+       
+        
+
+        
     }
 }
