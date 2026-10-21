@@ -62,6 +62,12 @@ namespace Vistas
             //this.Close();
         }
 
+        private void btnCliente_Click(object sender, RoutedEventArgs e)
+        {
+            AbmClientes ventanaClientes = new AbmClientes();
+            ventanaClientes.Show();
+        }
+
         private void btn_CerrarSesion(object sender, RoutedEventArgs e)
         {
             MessageBoxResult resultado = MessageBox.Show(

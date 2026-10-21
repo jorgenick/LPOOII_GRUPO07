@@ -62,9 +62,9 @@ namespace Vistas
                     txtDireccion.Text);
 
                 MessageBox.Show(
-                    "DNI: " + oCliente.DNI +
+                    "DNI: " + oCliente.Apellido +
                     "\nApellido: " + oCliente.Apellido +
-                    "\nNombre: " + oCliente.Nombre +
+                    "\nNombre: " + oCliente.Direccion +
                     "\nDirección: " + oCliente.Direccion,
                     "Datos almacenados en el objeto");
 

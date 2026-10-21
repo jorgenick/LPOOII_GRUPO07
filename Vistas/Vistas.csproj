@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AbmClientes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AltaCliente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -79,6 +83,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ListadoClientes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ListadoProductos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -87,6 +95,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="AbmClientes.xaml.cs">
+      <DependentUpon>AbmClientes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AltaCliente.xaml.cs">
       <DependentUpon>AltaCliente.xaml</DependentUpon>
     </Compile>
@@ -106,6 +117,9 @@
     <Compile Include="ConversorDeEstados.cs" />
     <Compile Include="ListaDeEstados.xaml.cs">
       <DependentUpon>ListaDeEstados.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoClientes.xaml.cs">
+      <DependentUpon>ListadoClientes.xaml</DependentUpon>
     </Compile>
     <Compile Include="ListadoProductos.xaml.cs">
       <DependentUpon>ListadoProductos.xaml</DependentUpon>
