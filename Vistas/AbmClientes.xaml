@@ -33,11 +33,17 @@
             <Label Content="Nombre" Height="25" Name="lblNombre" Width="182" />
             <Label Content="Dirección" Height="25" Name="lblDireccion" Width="181" />
         </StackPanel>
+        
+        
         <StackPanel Name="stackPanelInputs" Canvas.Left="397" Canvas.Top="95">
-            <TextBlock Text="{Binding Dni}" Height="25" Background="Beige" Padding="5" Name="txtBlockDNI" Width="236" />
-            <TextBlock Text="{Binding Apellido}" Height="25" Background="Beige" Padding="5" Name="txtBlockApellido" Width="231" />
-            <TextBlock Text="{Binding Nombre}" Height="25" Background="Beige" Name="textBlockNombre" Width="235" />
-            <TextBlock Text="{Binding Direccion}" Height="25" Background="Beige" Name="textBlockDireccion" Width="230" />
+            <TextBox Height="25" Background="Beige" Padding="2" Name="txtDNI" Width="236" 
+             Text="{Binding Dni, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,2"/>
+            <TextBox Height="25" Background="Beige" Padding="2" Name="txtApellido" Width="231" 
+             Text="{Binding Apellido, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,2"/>
+            <TextBox Height="25" Background="Beige" Padding="2" Name="txtNombre" Width="235" 
+             Text="{Binding Nombre, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,2"/>
+            <TextBox Height="25" Background="Beige" Padding="2" Name="txtDireccion" Width="230" 
+             Text="{Binding Direccion, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
     </Canvas>
     <!--

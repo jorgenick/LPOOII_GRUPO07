@@ -66,17 +66,66 @@ namespace Vistas
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
+            AltaCliente ventanaAlta = new AltaCliente();
 
+            ventanaAlta.ShowDialog();
+
+            listaCliente = TrabajarClientes.TraerClientes();
+
+            canvas_content.DataContext = listaCliente;
+            vista = (CollectionView)CollectionViewSource.GetDefaultView(canvas_content.DataContext);
+            vista.MoveCurrentToLast();
         }
+
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
+            Cliente clienteActual = vista.CurrentItem as Cliente;
 
+            if (clienteActual != null)
+            {
+                try
+                {
+                    // Guarda los cambios del cliente seleccionado en la BD
+                    TrabajarClientes.ModificarCliente(clienteActual);
+                    MessageBox.Show("Cliente modificado correctamente en la Base de Datos.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al actualizar cliente: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
+            Cliente clienteActual = vista.CurrentItem as Cliente;
 
+            if (clienteActual != null)
+            {
+                MessageBoxResult confirmacion = MessageBox.Show(
+                    "¿Desea eliminar el cliente actual?",
+                    "Confirmar Eliminación",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question);
+
+                if (confirmacion == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        TrabajarClientes.EliminarCliente(clienteActual.Dni);
+
+                        listaCliente.Remove(clienteActual);
+
+                        MessageBox.Show("Cliente eliminado con éxito.", "Baja realizada", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al eliminar cliente: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
         }
+
     }
 }

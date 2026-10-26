@@ -49,40 +49,58 @@ namespace Vistas
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
+            // Validar que los campos no estén vacíos
+            if (string.IsNullOrWhiteSpace(txtDNI.Text) || string.IsNullOrWhiteSpace(txtApellido.Text))
+            {
+                MessageBox.Show("Por favor complete los campos requeridos (DNI y Apellido).", "Atención", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             MessageBoxResult confirmacion = MessageBox.Show(
                 "¿Confirma guardar los datos ingresados?",
                 "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (confirmacion == MessageBoxResult.Yes)
             {
-                oCliente = new Cliente(
-                    txtDNI.Text,
-                    txtApellido.Text,
-                    txtNombre.Text,
-                    txtDireccion.Text);
+                try
+                {
+                    oCliente = new Cliente(
+                        txtDNI.Text,
+                        txtApellido.Text,
+                        txtNombre.Text,
+                        txtDireccion.Text);
 
-                MessageBox.Show(
-                    "DNI: " + oCliente.Apellido +
-                    "\nApellido: " + oCliente.Apellido +
-                    "\nNombre: " + oCliente.Direccion +
-                    "\nDirección: " + oCliente.Direccion,
-                    "Datos almacenados en el objeto");
+                    TrabajarClientes.AgregarCliente(oCliente);
 
-                txtDNI.IsEnabled = false;
-                txtApellido.IsEnabled = false;
-                txtNombre.IsEnabled = false;
-                txtDireccion.IsEnabled = false;
+                    MessageBox.Show(
+                        "DNI: " + oCliente.Dni +
+                        "\nApellido: " + oCliente.Apellido +
+                        "\nNombre: " + oCliente.Nombre +
+                        "\nDirección: " + oCliente.Direccion,
+                        "Cliente guardado en BD con éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                btnGuardar.IsEnabled = false;
-                btnCancelar.IsEnabled = false;
+                    txtDNI.IsEnabled = false;
+                    txtApellido.IsEnabled = false;
+                    txtNombre.IsEnabled = false;
+                    txtDireccion.IsEnabled = false;
 
-                btnNuevo.IsEnabled = true;
-                btnModificar.IsEnabled = true;
-                btnEliminar.IsEnabled = true;
-                btnPrimero.IsEnabled = true;
-                btnAnterior.IsEnabled = true;
-                btnSiguiente.IsEnabled = true;
-                btnUltimo.IsEnabled = true;
+                    btnGuardar.IsEnabled = false;
+                    btnCancelar.IsEnabled = false;
+
+                    btnNuevo.IsEnabled = true;
+                    btnModificar.IsEnabled = true;
+                    btnEliminar.IsEnabled = true;
+                    btnPrimero.IsEnabled = true;
+                    btnAnterior.IsEnabled = true;
+                    btnSiguiente.IsEnabled = true;
+                    btnUltimo.IsEnabled = true;
+
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al guardar en la Base de Datos: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
