@@ -2,14 +2,24 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="ListadoClientes" Height="336" Width="445">
-    <Grid>
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Loaded="dataGridClientes_Loaded" Name="dataGridClientes">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <DataGrid.Columns>
-                <DataGridTextColumn Header="DNI" Binding="{Binding ClienteDNI}" Width="80"/>
-                <DataGridTextColumn Header="Apellido" Binding="{Binding Apellido}" Width="*"/>
-                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="150"/>
-                <DataGridTextColumn Header="Dirección" Binding="{Binding Direccion}" Width="150"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,8">
+            <Label Content="Filtrar por apellido:" />
+            <TextBox Name="txtFiltro" Width="200" Height="25" TextChanged="txtFiltro_TextChanged" />
+        </StackPanel>
+
+        <DataGrid Grid.Row="1" Name="dataGridClientes" AutoGenerateColumns="False"
+              CanUserAddRows="False" IsReadOnly="True" Loaded="dataGridClientes_Loaded">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="DNI"       Binding="{Binding Dni}"       Width="80"/>
+                <DataGridTextColumn Header="Apellido"  Binding="{Binding Apellido}"  Width="*"/>
+                <DataGridTextColumn Header="Nombre"    Binding="{Binding Nombre}"    Width="*"/>
+                <DataGridTextColumn Header="Dirección" Binding="{Binding Direccion}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

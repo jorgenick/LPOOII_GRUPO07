@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ClasesBase;
 using System.Data;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Vistas
 {
@@ -25,17 +27,31 @@ namespace Vistas
             InitializeComponent();
         }
 
+        private ICollectionView vista;
+
         private void dataGridClientes_Loaded(object sender, RoutedEventArgs e)
         {
-            DataTable tableClientes = TrabajarClientes.TraerClientesDataTable();
-            dataGridClientes.ItemsSource = tableClientes.DefaultView;
+            ObservableCollection<Cliente> lista = TrabajarClientes.TraerClientes();
+            vista = CollectionViewSource.GetDefaultView(lista);
+
+            // 2a: orden ascendente por Apellido
+            vista.SortDescriptions.Clear();
+            vista.SortDescriptions.Add(new SortDescription("Apellido", ListSortDirection.Ascending));
+
+            dataGridClientes.ItemsSource = vista;
         }
 
-       
+        // filtro por apellido
+        private void txtFiltro_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (vista == null) return;
 
-       
-        
-
-        
+            string texto = txtFiltro.Text.Trim().ToLower();
+            vista.Filter = item =>
+            {
+                Cliente c = item as Cliente;
+                return c != null && (c.Apellido ?? "").ToLower().Contains(texto);
+            };
+        }
     }
 }
