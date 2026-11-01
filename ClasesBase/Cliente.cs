@@ -13,7 +13,7 @@ namespace ClasesBase
             get { return DNI; }
             set {
                 DNI = value;
-                NotificarCambio(DNI);
+                NotificarCambio("Dni");
             }
         }
 
@@ -25,7 +25,7 @@ namespace ClasesBase
             set
             {
                 apellido = value;
-                NotificarCambio(apellido);
+                NotificarCambio("Apellido");
             }
         }
 
@@ -38,7 +38,7 @@ namespace ClasesBase
             set
             {
                 nombre = value;
-                NotificarCambio(nombre);
+                NotificarCambio("Nombre");
             }
         }
 
@@ -50,7 +50,7 @@ namespace ClasesBase
             set
             {
                 direccion = value;
-                NotificarCambio(direccion);
+                NotificarCambio("Direccion");
             }
         }
 
