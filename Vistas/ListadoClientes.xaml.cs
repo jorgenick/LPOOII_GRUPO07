@@ -53,5 +53,15 @@ namespace Vistas
                 return c != null && (c.Apellido ?? "").ToLower().Contains(texto);
             };
         }
+
+        private void btnVistaPrevia_Click(object sender, RoutedEventArgs e)
+        {
+            if (vista == null) return;
+
+            List<Cliente> clientes = vista.Cast<Cliente>().ToList();
+            VistaPreviaClientes ventana = new VistaPreviaClientes(clientes);
+            ventana.Owner = this;
+            ventana.ShowDialog();
+        }
     }
 }

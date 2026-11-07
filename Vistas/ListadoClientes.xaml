@@ -11,6 +11,7 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,8">
             <Label Content="Filtrar por apellido:" />
             <TextBox Name="txtFiltro" Width="200" Height="25" TextChanged="txtFiltro_TextChanged" />
+            <Button Name="btnVistaPrevia" Content="Vista Previa" Width="90" Height="25" Margin="10,0,0,0" Click="btnVistaPrevia_Click" />
         </StackPanel>
 
         <DataGrid Grid.Row="1" Name="dataGridClientes" AutoGenerateColumns="False"
