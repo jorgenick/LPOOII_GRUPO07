@@ -1,0 +1,49 @@
+﻿<Window x:Class="Vistas.AltaVenta"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AltaVenta" Height="300" Width="300">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- nueva: Nro Venta -->
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Nro. Venta:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtNroFactura" Grid.Row="0" Grid.Column="1" Margin="0,5"/>
+
+        <TextBlock Text="Fecha:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+        <DatePicker x:Name="dpFecha" Grid.Row="1" Grid.Column="1" Margin="0,5"/>
+
+        <TextBlock Text="Vendedor:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+        <ComboBox x:Name="cbVendedor" Grid.Row="2" Grid.Column="1" Margin="0,5"/>
+
+        <TextBlock Text="Cliente:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+        <ComboBox x:Name="cbCliente" Grid.Row="3" Grid.Column="1" Margin="0,5"/>
+
+        <TextBlock Text="Producto:" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
+        <ComboBox x:Name="cbProducto" Grid.Row="4" Grid.Column="1" Margin="0,5" SelectionChanged="cbProducto_SelectionChanged"/>
+
+        <TextBlock Text="Cantidad:" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtCantidad" Grid.Row="5" Grid.Column="1" Margin="0,5" Text="1"/>
+
+        <TextBlock Text="Precio Unitario:" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtPrecio" Grid.Row="6" Grid.Column="1" Margin="0,5" IsReadOnly="True"/>
+
+        <Button Content="Confirmar Venta" Grid.Row="7" Grid.Column="1"
+        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+        Click="btnConfirmar_Click" Padding="10,5"/>
+    </Grid>
+</Window>

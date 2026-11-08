@@ -72,6 +72,7 @@
     <Compile Include="TrabajarClientes.cs" />
     <Compile Include="TrabajarProductos.cs" />
     <Compile Include="TrabajarVendedores.cs" />
+    <Compile Include="TrabajarVentas.cs" />
     <Compile Include="Vendedor.cs" />
     <Compile Include="Venta.cs" />
   </ItemGroup>
@@ -79,7 +80,9 @@
     <Folder Include="services\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="muebleriaDataSet.xsc">
       <DependentUpon>muebleriaDataSet.xsd</DependentUpon>
     </None>
@@ -98,7 +101,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="muebleria.mdf" />
-    <Content Include="muebleria_log.LDF">
+    <Content Include="muebleria_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>muebleria.mdf</DependentUpon>
     </Content>
   </ItemGroup>

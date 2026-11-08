@@ -90,5 +90,11 @@ namespace Vistas
             ventanaListadoClientes.Show();
         }
 
+        private void btnVentas_Click(object sender, RoutedEventArgs e)
+        {
+            AltaVenta ventana = new AltaVenta();
+            ventana.Show();
+        }
+
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ClasesBase
 {
-    class Venta
+    public class Venta
     {
         public int NroFactura { get; set; }
         public string FechaFactura { get; set; }
