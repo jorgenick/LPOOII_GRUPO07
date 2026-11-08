@@ -75,6 +75,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AltaVenta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ComprobanteVenta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="EstilosMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -114,9 +122,15 @@
     <Compile Include="AltaVendedor.xaml.cs">
       <DependentUpon>AltaVendedor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AltaVenta.xaml.cs">
+      <DependentUpon>AltaVenta.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComprobanteVenta.xaml.cs">
+      <DependentUpon>ComprobanteVenta.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConversorDeEstados.cs" />
     <Compile Include="ListaDeEstados.xaml.cs">
