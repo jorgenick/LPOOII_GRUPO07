@@ -95,6 +95,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Presentacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VistaPreviaClientes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -138,6 +142,9 @@
     </Compile>
     <Compile Include="ListadoClientes.xaml.cs">
       <DependentUpon>ListadoClientes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion.xaml.cs">
+      <DependentUpon>Presentacion.xaml</DependentUpon>
     </Compile>
     <Compile Include="VistaPreviaClientes.xaml.cs">
       <DependentUpon>VistaPreviaClientes.xaml</DependentUpon>
@@ -191,6 +198,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Estados.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Recursos\Audio\Elevator-Music.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
