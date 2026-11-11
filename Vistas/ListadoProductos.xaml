@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Listado de Productos" Height="420" Width="720"
         WindowStartupLocation="CenterScreen"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded"
+        Style="{StaticResource VentanaConDegradado}">
 
     <DockPanel Margin="10">
         <TextBlock DockPanel.Dock="Top" Text="Productos registrados"

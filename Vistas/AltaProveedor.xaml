@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="ABM de Proveedores" Height="320" Width="676"
         WindowStartupLocation="CenterScreen"
-        Background="White">
+        Style="{StaticResource VentanaConDegradado}">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

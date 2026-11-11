@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="ABM de (Productos)" Height="442" Width="768"
         WindowStartupLocation="CenterScreen"
-        Background="White">
+        Style="{StaticResource VentanaConDegradado}">
 
     <DockPanel Margin="10">
         <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="0,0,0,20" Width="760">
