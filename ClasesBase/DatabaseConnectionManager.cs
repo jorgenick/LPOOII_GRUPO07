@@ -9,8 +9,8 @@ namespace ClasesBase
 {
     class DatabaseConnectionManager
     {   
-        //private static string stringConnection = ClasesBase.Properties.Settings.Default.muebleriaConnectionString;
-        private static string stringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\DEV\LPOOII_GRUPO07\ClasesBase\muebleria.mdf;Integrated Security=True;Connect Timeout=30";
+        private static string stringConnection = ClasesBase.Properties.Settings.Default.muebleriaConnectionString;
+        //private static string stringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\DEV\LPOOII_GRUPO07\ClasesBase\muebleria.mdf;Integrated Security=True;Connect Timeout=30";
             
 
 
