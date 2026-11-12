@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace Vistas
 {
@@ -9,7 +10,6 @@ namespace Vistas
         public Login()
         {
             InitializeComponent();
-
         }
 
         private void btnclick_onClick(object sender, RoutedEventArgs e)
@@ -36,6 +36,15 @@ namespace Vistas
             {
                 lblMensaje.Foreground = Brushes.Red;
                 lblMensaje.Text = "Usuario o contraseña incorrectos.";
+                var fade = new DoubleAnimation
+                {
+                    From = 0,
+                    To = 1,
+                    Duration = TimeSpan.FromMilliseconds(300)
+                };
+                lblMensaje.BeginAnimation(UIElement.OpacityProperty, fade);
+                txtPassword.Clear();
+                txtPassword.Focus();
             }
 
         }
