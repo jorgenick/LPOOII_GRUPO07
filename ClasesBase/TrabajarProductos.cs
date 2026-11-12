@@ -13,8 +13,7 @@ namespace ClasesBase
         public static DataTable TraerProductos()
         {
             //Conexion
-            SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.muebleriaConnectionString);
-
+            SqlConnection cnn = DatabaseConnectionManager.getConnection();
             //Consulta
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "SELECT CodProducto, Categoria, Color, Descripcion, Precio FROM Producto ORDER BY CodProducto";
@@ -34,7 +33,7 @@ namespace ClasesBase
             string sql = "INSERT INTO Producto (CodProducto, Categoria, Color, Descripcion, Precio) " +
                          "VALUES (@CodProducto, @Categoria, @Color, @Descripcion, @Precio)";
 
-            using (SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.muebleriaConnectionString))
+            using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlCommand cmd = new SqlCommand(sql, cnn))
             {
                 cmd.CommandType = CommandType.Text;
@@ -73,7 +72,7 @@ namespace ClasesBase
                          "Descripcion = @Descripcion, Precio = @Precio " +
                          "WHERE CodProducto = @CodProducto";
 
-            using (SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.muebleriaConnectionString))
+            using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlCommand cmd = new SqlCommand(sql, cnn))
             {
                 cmd.Parameters.AddWithValue("@CodProducto", oProducto.CodProducto);
@@ -91,7 +90,7 @@ namespace ClasesBase
         {
             string sql = "DELETE FROM Producto WHERE CodProducto = @CodProducto";
 
-            using (SqlConnection cnn = new SqlConnection(ClasesBase.Properties.Settings.Default.muebleriaConnectionString))
+            using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlCommand cmd = new SqlCommand(sql, cnn))
             {
                 cmd.Parameters.AddWithValue("@CodProducto", codProducto);

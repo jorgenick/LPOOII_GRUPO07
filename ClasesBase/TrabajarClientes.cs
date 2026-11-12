@@ -11,11 +11,6 @@ namespace ClasesBase
     public class TrabajarClientes
     {
 
-        private static string Cadena()
-        {
-            return ClasesBase.Properties.Settings.Default.muebleriaConnectionString;
-        }
-
         public static ObservableCollection<Cliente> TraerClientes()
         {
             ObservableCollection<Cliente> lista = new ObservableCollection<Cliente>();
@@ -39,7 +34,7 @@ namespace ClasesBase
             DataTable dataTableClientes = new DataTable();
             string sql = "SELECT ClienteDNI, Apellido, Nombre, Direccion FROM Cliente ORDER BY Apellido ASC";
 
-            using (SqlConnection cnn = new SqlConnection(Cadena()))
+            using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
 
             using (SqlDataAdapter da = new SqlDataAdapter(sql, cnn))
             {
@@ -54,7 +49,7 @@ namespace ClasesBase
         {
             string sql = "INSERT INTO Cliente (ClienteDNI, Apellido, Nombre, Direccion) VALUES (@dni, @apellido, @nombre, @direccion)";
 
-            using (SqlConnection cnn = new SqlConnection(Cadena()))
+            using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlCommand cmd = new SqlCommand(sql, cnn))
             {
                 cmd.Parameters.AddWithValue("@dni", oCliente.Dni);
@@ -72,7 +67,7 @@ namespace ClasesBase
         {
             string sql = "UPDATE Cliente SET Apellido = @apellido, Nombre = @nombre, Direccion = @direccion WHERE ClienteDNI = @dni";
 
-            using (SqlConnection cnn = new SqlConnection(Cadena()))
+            using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlCommand cmd = new SqlCommand(sql, cnn))
             {
                 cmd.Parameters.AddWithValue("@dni", oCliente.Dni);
@@ -90,7 +85,7 @@ namespace ClasesBase
         {
             string sql = "DELETE FROM Cliente WHERE ClienteDNI = @dni";
 
-            using (SqlConnection cnn = new SqlConnection(Cadena()))
+            using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlCommand cmd = new SqlCommand(sql, cnn))
             {
                 cmd.Parameters.AddWithValue("@dni", dni);

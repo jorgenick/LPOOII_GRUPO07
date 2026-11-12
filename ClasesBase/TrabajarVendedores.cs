@@ -10,17 +10,13 @@ namespace ClasesBase
 {
     public class TrabajarVendedores
     {
-        private static string Cadena()
-        {
-            return ClasesBase.Properties.Settings.Default.muebleriaConnectionString;
-        }
 
         public static ObservableCollection<Vendedor> TraerColeccionVendedores()
         {
             ObservableCollection<Vendedor> lista = new ObservableCollection<Vendedor>();
             string sql = "SELECT Legajo, Apellido, Nombre FROM Vendedor ORDER BY Apellido, Nombre";
 
-            using (SqlConnection cnn = new SqlConnection(Cadena()))
+            using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlDataAdapter da = new SqlDataAdapter(sql, cnn))
             {
                 DataTable dt = new DataTable();
@@ -43,7 +39,7 @@ namespace ClasesBase
             string sql = "INSERT INTO Vendedor (Legajo, Apellido, Nombre) " +
                          "VALUES (@Legajo, @Apellido, @Nombre)";
 
-            using (SqlConnection cnn = new SqlConnection(Cadena()))
+            using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlCommand cmd = new SqlCommand(sql, cnn))
             {
                 cmd.Parameters.AddWithValue("@Legajo", oVendedor.Legajo);
@@ -60,7 +56,7 @@ namespace ClasesBase
             string sql = "UPDATE Vendedor SET Apellido = @Apellido, Nombre = @Nombre " +
                          "WHERE Legajo = @Legajo";
 
-            using (SqlConnection cnn = new SqlConnection(Cadena()))
+            using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlCommand cmd = new SqlCommand(sql, cnn))
             {
                 cmd.Parameters.AddWithValue("@Legajo", oVendedor.Legajo);
@@ -76,7 +72,7 @@ namespace ClasesBase
         {
             string sql = "DELETE FROM Vendedor WHERE Legajo = @Legajo";
 
-            using (SqlConnection cnn = new SqlConnection(Cadena()))
+            using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlCommand cmd = new SqlCommand(sql, cnn))
             {
                 cmd.Parameters.AddWithValue("@Legajo", legajo);

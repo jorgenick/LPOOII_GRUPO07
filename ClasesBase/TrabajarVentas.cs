@@ -9,17 +9,12 @@ namespace ClasesBase
 {
     public static class TrabajarVentas
     {
-        private static string Cadena()
-        {
-            return ClasesBase.Properties.Settings.Default.muebleriaConnectionString;
-        }
-
         public static int InsertarVenta(Venta v)
         {
             string sql = @"INSERT INTO Venta (NroFactura, FechaFactura, Legajo, ClienteDNI, CodProducto, Precio, Cantidad, Importe)
                            VALUES (@nroFactura, @fecha, @legajo, @dni, @codProducto, @precio, @cantidad, @importe)";
 
-            using (SqlConnection cnn = new SqlConnection(Cadena()))
+            using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlCommand cmd = new SqlCommand(sql, cnn))
             {
                 cmd.Parameters.AddWithValue("@nroFactura", v.NroFactura);
