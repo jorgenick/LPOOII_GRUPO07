@@ -23,6 +23,12 @@
         <Button x:Name="btnSalir" DockPanel.Dock="Bottom" Content="Salir" Style="{StaticResource BotonSalir}" HorizontalAlignment="Right"
         Click="btnSalir_Click"/>
 
+        <!-- Control para mostrar la foto del producto -->
+        <Image x:Name="imgProducto" Width="150" Height="150" Stretch="Uniform" Margin="10"/>
+
+        <!-- Botón para buscar la imagen -->
+        <Button x:Name="btnSeleccionarImagen" Content="Buscar Imagen..." Click="btnSeleccionarImagen_Click" Width="120" Height="30"/>
+
         <Grid VerticalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

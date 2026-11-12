@@ -42,6 +42,7 @@ namespace ClasesBase
                 cmd.Parameters.AddWithValue("@Color", oProducto.Color);
                 cmd.Parameters.AddWithValue("@Descripcion", oProducto.Descripcion);
                 cmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = oProducto.Precio;
+                //cmd.Parameters.AddWithValue("@RutaImagen", oProducto.NombreArchivoImagen);
 
                 cnn.Open();
                 return cmd.ExecuteNonQuery();
@@ -80,6 +81,7 @@ namespace ClasesBase
                 cmd.Parameters.AddWithValue("@Color", oProducto.Color);
                 cmd.Parameters.AddWithValue("@Descripcion", oProducto.Descripcion);
                 cmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = oProducto.Precio;
+                //cmd.Parameters.AddWithValue("@RutaImagen", oProducto.NombreArchivoImagen);
 
                 cnn.Open();
                 return cmd.ExecuteNonQuery();

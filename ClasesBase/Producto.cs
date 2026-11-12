@@ -13,6 +13,7 @@ namespace ClasesBase
         public string Color { get; set; }
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
+        public decimal NombreArchivoImagen { get; set; }
 
         public Producto()
         {

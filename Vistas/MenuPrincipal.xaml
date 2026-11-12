@@ -24,6 +24,7 @@
                 <Button x:Name="btnCliente" Content="Alta de Clientes" Style="{StaticResource BotonMenu}" Click="btnCliente_Click" />
                 <Button Content="Listado de Clientes" Name="btnListadoClientes" Style="{StaticResource BotonMenu}" Click="btnListadoClientes_Click" />
                 <Button x:Name="btnVentas" Content="Ventas" Style="{StaticResource BotonMenu}" Click="btnVentas_Click"/>
+                <Button Content="Acerca de" Name="btnAcercaDe" Style="{StaticResource BotonMenu}" Click="btnAcercaDe_Click" />
             </UniformGrid>
         </StackPanel>
 

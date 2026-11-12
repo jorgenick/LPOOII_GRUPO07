@@ -14,15 +14,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes; 
 using System.Data.SqlClient; //Importa el espacio de nombres donde viven las clases para hablar con SQL Server
 using ClasesBase;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Vistas
 {
     public partial class AltaProducto : Window
-    {
+    {   
         private Producto oProducto;
         private ObservableCollection<Producto> listaProductos;
         private ICollectionView vista;
         private bool modoModificar = false;
+        private string nombreArchivoDestino = "";
 
         public AltaProducto()
         {
@@ -253,6 +256,47 @@ namespace Vistas
         {
             ListadoProductos listado = new ListadoProductos();
             listado.ShowDialog();
+        }
+
+        private void btnSeleccionarImagen_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            // Filtramos para que el usuario solo elija imágenes
+            openFileDialog.Filter = "Archivos de imagen (*.jpg, *.png)|*.jpg;*.png";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string rutaOrigen = openFileDialog.FileName;
+                // Obtenemos solo el nombre del archivo (ej. "silla.jpg")
+                string nombreArchivo = System.IO.Path.GetFileName(rutaOrigen);
+
+                // Armamos la ruta hacia la carpeta bin\Debug\ImagenesProductos de tu proyectoC:\DEV\LPOOII_GRUPO07\ClasesBase\TrabajarVendedores.cs
+                string carpetaDestino = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ImagenesProductos");
+
+                // Si la carpeta no existe la creamos automáticamente
+                if (!Directory.Exists(carpetaDestino))
+                {
+                    Directory.CreateDirectory(carpetaDestino);
+                }
+
+                string rutaDestino = System.IO.Path.Combine(carpetaDestino, nombreArchivo);
+
+                // Copiamos la imagen. El 'true' permite sobrescribir si el archivo ya existe.
+                File.Copy(rutaOrigen, rutaDestino, true);
+
+                // Guardamos el nombre en la variable global para usarla en el botón "Guardar" de tu ABM
+                nombreArchivoDestino = nombreArchivo;
+
+                // --- Cargar la imagen en el control WPF ---
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(rutaDestino, UriKind.Absolute);
+                // CRÍTICO: CacheOption libera el archivo para que no quede bloqueado por el programa
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.EndInit();
+
+                imgProducto.Source = bitmap;
+            }
         }
     }
 }

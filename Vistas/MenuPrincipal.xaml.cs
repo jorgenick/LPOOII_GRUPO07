@@ -96,5 +96,11 @@ namespace Vistas
             ventana.Show();
         }
 
+        private void btnAcercaDe_Click(object sender, RoutedEventArgs e)
+        {
+            AcercaDe ventana = new AcercaDe();
+            ventana.Show();
+        }
+
     }
 }
