@@ -207,6 +207,21 @@
     <Resource Include="Estados.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\iconos\anterior.png" />
+    <Resource Include="images\iconos\cancelar.png" />
+    <Resource Include="images\iconos\confirmar.png" />
+    <Resource Include="images\iconos\eliminar.png" />
+    <Resource Include="images\iconos\estados.png" />
+    <Resource Include="images\iconos\guardar.png" />
+    <Resource Include="images\iconos\imprimir.png" />
+    <Resource Include="images\iconos\modificar.png" />
+    <Resource Include="images\iconos\nuevo.png" />
+    <Resource Include="images\iconos\primero.png" />
+    <Resource Include="images\iconos\salir.png" />
+    <Resource Include="images\iconos\siguiente.png" />
+    <Resource Include="images\iconos\ultimo.png" />
+    <Resource Include="images\iconos\ver.png" />
+    <Resource Include="images\iconos\vistaprevia.png" />
     <Content Include="Recursos\Audio\Elevator-Music.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

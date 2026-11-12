@@ -15,18 +15,44 @@
     </Window.Resources>
 
     <Canvas Name="canvas_content" DataContext="{Binding Source={StaticResource ResourceKey=LIST_CLIENTE}}" Height="408" Width="652">
-        
-        <StackPanel Orientation="Horizontal" Height="40" Width="193" Canvas.Left="443" Canvas.Top="12">
-            <Button Name="btnFirst" Content="|&lt;" Margin="0 0 10 0" Width="40" Height="23" Click="btnFirst_Click"></Button>
-            <Button Name="btnPrevious" Content="&lt;" Margin="0 0 10 0" Width="40" Height="23" Click="btnPrevious_Click"></Button>
-            <Button Name="btnNext" Content="&gt;" Margin="0 0 10 0" Width="40" Height="23" Click="btnNext_Click"></Button>
-            <Button Name="btnLast" Content="&gt;|" Margin="0 0 10 0" Width="40" Height="23" Click="btnLast_Click"></Button>
+
+        <!-- Botones de navegacion solo ícono -->
+        <StackPanel Orientation="Horizontal" Height="40" Width="200" Canvas.Left="443" Canvas.Top="12">
+            <Button Name="btnFirst" Margin="0 0 10 0" Width="40" Height="28" Click="btnFirst_Click" ToolTip="Ir al primer cliente">
+                <Image Source="/images/iconos/primero.png" Width="16" Height="16"/>
+            </Button>
+            <Button Name="btnPrevious" Margin="0 0 10 0" Width="40" Height="28" Click="btnPrevious_Click" ToolTip="Ir al cliente anterior">
+                <Image Source="/images/iconos/anterior.png" Width="16" Height="16"/>
+            </Button>
+            <Button Name="btnNext" Margin="0 0 10 0" Width="40" Height="28" Click="btnNext_Click" ToolTip="Ir al cliente siguiente">
+                <Image Source="/images/iconos/siguiente.png" Width="16" Height="16"/>
+            </Button>
+            <Button Name="btnLast" Margin="0 0 10 0" Width="40" Height="28" Click="btnLast_Click" ToolTip="Ir al último cliente">
+                <Image Source="/images/iconos/ultimo.png" Width="16" Height="16"/>
+            </Button>
         </StackPanel>
-        
-        <StackPanel Orientation="Horizontal" Canvas.Left="28" Canvas.Top="12" Height="40" Name="stackPanelAcciones" Width="245">
-            <Button Content="Nuevo" Height="23" Name="btnNuevo" Width="75" Margin="0 0 10 0" Click="btnNuevo_Click" />
-            <Button Content="Modificar" Height="23" Name="btnModificar" Width="75" Margin="0 0 10 0" Click="btnModificar_Click" />
-            <Button Content="Eliminar" Height="23" Name="btnEliminar" Width="75" Margin="0 0 10 0" Click="btnEliminar_Click" />
+
+        <!-- Botones de acciones icono y texto -->
+        <StackPanel Orientation="Horizontal" Canvas.Left="28" Canvas.Top="12" Height="40" Name="stackPanelAcciones" Width="320">
+            <Button Height="28" Name="btnNuevo" Width="95" Margin="0 0 10 0" Click="btnNuevo_Click" ToolTip="Crear un nuevo cliente">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/iconos/nuevo.png" Style="{StaticResource IconoBoton}"/>
+                    <TextBlock Text="Nuevo" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Height="28" Name="btnModificar" Width="95" Margin="0 0 10 0" Click="btnModificar_Click" ToolTip="Modificar el cliente seleccionado">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/iconos/modificar.png" Style="{StaticResource IconoBoton}"/>
+                    <TextBlock Text="Modificar" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Height="28" Name="btnEliminar" Width="95" Margin="0 0 10 0" Click="btnEliminar_Click" ToolTip="Eliminar el cliente seleccionado">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/iconos/eliminar.png" Style="{StaticResource IconoBoton}"/>
+                    <TextBlock Text="Eliminar" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
         </StackPanel>
         <StackPanel Height="107" Name="stackPanelLabels" Width="184" Canvas.Left="12" Canvas.Top="95">
             <Label Content="DNI" Height="25" Name="labelDni" Width="184" />
