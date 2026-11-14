@@ -41,7 +41,7 @@ namespace ClasesBase
                 cmd.Parameters.AddWithValue("@Categoria", oProducto.Categoria);
                 cmd.Parameters.AddWithValue("@Color", oProducto.Color);
                 cmd.Parameters.AddWithValue("@Descripcion", oProducto.Descripcion);
-                cmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = oProducto.Precio;
+                cmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = oProducto.Precio ?? 0;
                 //cmd.Parameters.AddWithValue("@RutaImagen", oProducto.NombreArchivoImagen);
 
                 cnn.Open();
@@ -80,7 +80,7 @@ namespace ClasesBase
                 cmd.Parameters.AddWithValue("@Categoria", oProducto.Categoria);
                 cmd.Parameters.AddWithValue("@Color", oProducto.Color);
                 cmd.Parameters.AddWithValue("@Descripcion", oProducto.Descripcion);
-                cmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = oProducto.Precio;
+                cmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = oProducto.Precio ?? 0;
                 //cmd.Parameters.AddWithValue("@RutaImagen", oProducto.NombreArchivoImagen);
 
                 cnn.Open();
@@ -100,6 +100,35 @@ namespace ClasesBase
                 return cmd.ExecuteNonQuery();
             }
         }
+
+        // metodo para generar un siguiente codigo de producto
+        public static string GenerarSiguienteCodigo()
+        {
+            string sql = "SELECT MAX(CodProducto) FROM Producto";
+            using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
+            using (SqlCommand cmd = new SqlCommand(sql, cnn))
+            {
+                cnn.Open();
+                object resultado = cmd.ExecuteScalar();
+
+                if (resultado == null || resultado == DBNull.Value)
+                    return "P001"; //  si la tabla esta vacia se retorna P001
+
+                string ultimoCodigo = resultado.ToString().Trim(); // extraemos ultimo codigo
+                // extraemos solo parte numerica
+                string parteNumerica = ultimoCodigo.StartsWith("P") ? ultimoCodigo.Substring(1) : ultimoCodigo;
+
+                // incrementamos y se formatea el numero
+                int numero;
+                if (int.TryParse(parteNumerica, out numero))
+                {
+                    return "P" + (numero + 1).ToString("D3"); // Devuelve "P006"
+                }
+
+                return "P001";
+            }
+        }
+
 
     }
 }

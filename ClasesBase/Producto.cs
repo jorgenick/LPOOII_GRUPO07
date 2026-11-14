@@ -12,7 +12,7 @@ namespace ClasesBase
         public string Categoria { get; set; }
         public string Color { get; set; }
         public string Descripcion { get; set; }
-        public decimal Precio { get; set; }
+        public decimal? Precio { get; set; }
         public decimal NombreArchivoImagen { get; set; }
 
         public Producto()
@@ -43,12 +43,6 @@ namespace ClasesBase
 
                 switch (columnName)
                 {
-                    case "CodProducto":
-                        if (string.IsNullOrWhiteSpace(CodProducto))
-                        {
-                            resultado = "El codigo de producto es obligatorio ";
-                        }
-                        break;
 
                     case "Categoria":
                         if (string.IsNullOrWhiteSpace(Categoria))
@@ -69,7 +63,7 @@ namespace ClasesBase
                         }
                         break;
                     case "Precio":
-                        if (Precio<=0)
+                        if (Precio == null || Precio <= 0)
                         {
                             resultado = "El precio debe ser mayor a 0 ";
                         }

@@ -6,7 +6,7 @@
         Style="{StaticResource VentanaConDegradado}">
 
     <DockPanel Margin="10">
-        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="0,0,0,20" Width="760">
+        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="0,0,0,20" Width="805">
             <Button x:Name="btnNuevo" Style="{StaticResource BotonRojo}" Click="btnNuevo_Click" ToolTip="Crear un nuevo producto">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/images/iconos/nuevo.png" Style="{StaticResource IconoBoton}"/>
@@ -106,7 +106,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Cód. Producto" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <TextBox x:Name="txtCodProducto" Text="{Binding Path=CodProducto, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+            <TextBox x:Name="txtCodProducto" Text="{Binding Path=CodProducto}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
 
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Categoría" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
             <TextBox x:Name="txtCategoria" Text="{Binding Path=Categoria, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
@@ -118,7 +118,8 @@
             <TextBox x:Name="txtDescripcion" Text="{Binding Path=Descripcion, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
 
             <TextBlock Grid.Row="8" Grid.Column="0" Text="Precio" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <TextBox x:Name="txtPrecio" Text="{Binding Path=Precio, ValidatesOnDataErrors=True, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+            <TextBox x:Name="txtPrecio" Text="{Binding Path=Precio, TargetNullValue='', ValidatesOnDataErrors=True, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+         Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
         </Grid>
     </DockPanel>
 </Window>

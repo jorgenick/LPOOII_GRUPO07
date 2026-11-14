@@ -61,7 +61,7 @@ namespace Vistas
 
         private void HabilitarEdicion(bool editando) //me ahorra el trabajo de habilitar a cada rato 
         {
-            txtCodProducto.IsEnabled = editando;
+            txtCodProducto.IsEnabled = false; // bloqueado, el codigo se genera automaticamente 
             txtCategoria.IsEnabled = editando;
             txtColor.IsEnabled = editando;
             txtDescripcion.IsEnabled = editando;
@@ -86,9 +86,11 @@ namespace Vistas
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             oProducto = new Producto();
+            oProducto.CodProducto = TrabajarProductos.GenerarSiguienteCodigo();
             this.DataContext = oProducto;
             modoModificar = false;
             HabilitarEdicion(true);
+            txtCategoria.Focus(); // el cursor se posiciona en la categoria
         }
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
@@ -151,7 +153,7 @@ namespace Vistas
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            if (Validation.GetHasError(txtCodProducto) || Validation.GetHasError(txtCategoria) ||
+            if (Validation.GetHasError(txtCategoria) ||
                 Validation.GetHasError(txtColor) || Validation.GetHasError(txtDescripcion) ||
                 Validation.GetHasError(txtPrecio))
             {
