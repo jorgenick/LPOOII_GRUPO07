@@ -251,7 +251,10 @@ namespace Vistas
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             ListaDeEstados test = new ListaDeEstados();
-            test.Show();
+            //test.Show();
+            // para evitar abrir la ventana reiteradas veces
+            test.Owner = this;
+            test.ShowDialog();
         }
 
         private void btnVerProductos_Click(object sender, RoutedEventArgs e)
