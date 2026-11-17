@@ -27,13 +27,13 @@
                     <TextBlock Text="Nuevo" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnModificar" Style="{StaticResource BotonRojo}" ToolTip="Modificar el proveedor seleccionado">
+            <Button x:Name="btnModificar" Style="{StaticResource BotonRojo}" Click="btnModificar_Click" ToolTip="Modificar el proveedor seleccionado">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/images/iconos/modificar.png" Style="{StaticResource IconoBoton}"/>
                     <TextBlock Text="Modificar" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnEliminar" Style="{StaticResource BotonRojo}" ToolTip="Eliminar el proveedor seleccionado">
+            <Button x:Name="btnEliminar" Style="{StaticResource BotonRojo}" Click="btnEliminar_Click" ToolTip="Eliminar el proveedor seleccionado">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/images/iconos/eliminar.png" Style="{StaticResource IconoBoton}"/>
                     <TextBlock Text="Eliminar" VerticalAlignment="Center"/>
@@ -51,25 +51,25 @@
                     <TextBlock Text="Cancelar" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnPrimero" Style="{StaticResource BotonVerde}" ToolTip="Ir al primer proveedor">
+            <Button x:Name="btnPrimero" Style="{StaticResource BotonVerde}" Click="btnPrimero_Click" ToolTip="Ir al primer proveedor">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/images/iconos/primero.png" Style="{StaticResource IconoBoton}"/>
                     <TextBlock Text="Primero" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnAnterior" Style="{StaticResource BotonVerde}" ToolTip="Ir al proveedor anterior">
+            <Button x:Name="btnAnterior" Style="{StaticResource BotonVerde}" Click="btnAnterior_Click" ToolTip="Ir al proveedor anterior">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/images/iconos/anterior.png" Style="{StaticResource IconoBoton}"/>
                     <TextBlock Text="Anterior" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnSiguiente" Style="{StaticResource BotonVerde}" ToolTip="Ir al proveedor siguiente">
+            <Button x:Name="btnSiguiente" Style="{StaticResource BotonVerde}" Click="btnSiguiente_Click" ToolTip="Ir al proveedor siguiente">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/images/iconos/siguiente.png" Style="{StaticResource IconoBoton}"/>
                     <TextBlock Text="Siguiente" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnUltimo" Style="{StaticResource BotonVerde}" ToolTip="Ir al último proveedor">
+            <Button x:Name="btnUltimo" Style="{StaticResource BotonVerde}" Click="btnUltimo_Click" ToolTip="Ir al último proveedor">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/images/iconos/ultimo.png" Style="{StaticResource IconoBoton}"/>
                     <TextBlock Text="Último" VerticalAlignment="Center"/>
@@ -79,16 +79,16 @@
 
         <!-- Campos -->
         <TextBlock Grid.Row="1" Grid.Column="0" Text="CUIT:" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="txtCUIT" Grid.Row="1" Grid.Column="1" Margin="5" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+        <TextBox x:Name="txtCUIT" Text="{Binding Path=CUIT, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Margin="5" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
 
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Razón Social:" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="txtRazonSocial" Grid.Row="2" Grid.Column="1" Margin="5" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+        <TextBox x:Name="txtRazonSocial" Text="{Binding Path=RazonSocial, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" Margin="5" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
 
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Domicilio:" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="txtDomicilio" Grid.Row="3" Grid.Column="1" Margin="5" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+        <TextBox x:Name="txtDomicilio" Text="{Binding Path=Domicilio, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" Margin="5" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
 
         <TextBlock Grid.Row="4" Grid.Column="0" Text="Teléfono:" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="txtTelefono" Grid.Row="4" Grid.Column="1" Margin="5" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+        <TextBox x:Name="txtTelefono" Text="{Binding Path=Telefono, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="1" Margin="5" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
 
         <!-- Salir -->
         <Button x:Name="btnSalir" Grid.Row="6" Grid.Column="1" Style="{StaticResource BotonSalir}" Click="btnSalir_Click" ToolTip="Cerrar esta ventana">
@@ -97,5 +97,5 @@
                 <TextBlock Text="Salir" VerticalAlignment="Center"/>
             </StackPanel>
         </Button>
-        </Grid>
+    </Grid>
 </Window>
