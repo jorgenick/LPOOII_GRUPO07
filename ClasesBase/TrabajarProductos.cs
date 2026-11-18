@@ -16,7 +16,7 @@ namespace ClasesBase
             SqlConnection cnn = DatabaseConnectionManager.getConnection();
             //Consulta
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT CodProducto, Categoria, Color, Descripcion, Precio FROM Producto ORDER BY CodProducto";
+            cmd.CommandText = "SELECT CodProducto, Categoria, Color, Descripcion, Precio, RutaImagen FROM Producto ORDER BY CodProducto";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = cnn;
 
@@ -30,8 +30,8 @@ namespace ClasesBase
 
         public static int InsertarProducto(Producto oProducto)
         {
-            string sql = "INSERT INTO Producto (CodProducto, Categoria, Color, Descripcion, Precio) " +
-                         "VALUES (@CodProducto, @Categoria, @Color, @Descripcion, @Precio)";
+            string sql = "INSERT INTO Producto (CodProducto, Categoria, Color, Descripcion, Precio, RutaImagen) " +
+                         "VALUES (@CodProducto, @Categoria, @Color, @Descripcion, @Precio, @RutaImagen)";
 
             using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlCommand cmd = new SqlCommand(sql, cnn))
@@ -42,7 +42,7 @@ namespace ClasesBase
                 cmd.Parameters.AddWithValue("@Color", oProducto.Color);
                 cmd.Parameters.AddWithValue("@Descripcion", oProducto.Descripcion);
                 cmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = oProducto.Precio ?? 0;
-                //cmd.Parameters.AddWithValue("@RutaImagen", oProducto.NombreArchivoImagen);
+                cmd.Parameters.AddWithValue("@RutaImagen", (object)oProducto.NombreArchivoImagen ?? DBNull.Value);
 
                 cnn.Open();
                 return cmd.ExecuteNonQuery();
@@ -62,6 +62,7 @@ namespace ClasesBase
                 p.Color = fila["Color"].ToString();
                 p.Descripcion = fila["Descripcion"].ToString();
                 p.Precio = Convert.ToDecimal(fila["Precio"]);
+                p.NombreArchivoImagen = fila["RutaImagen"] == DBNull.Value ? null : fila["RutaImagen"].ToString();
                 lista.Add(p);
             }
             return lista;
@@ -70,7 +71,7 @@ namespace ClasesBase
         public static int ModificarProducto(Producto oProducto)
         {
             string sql = "UPDATE Producto SET Categoria = @Categoria, Color = @Color, " +
-                         "Descripcion = @Descripcion, Precio = @Precio " +
+                         "Descripcion = @Descripcion, Precio = @Precio, RutaImagen = @RutaImagen " +
                          "WHERE CodProducto = @CodProducto";
 
             using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
@@ -81,7 +82,7 @@ namespace ClasesBase
                 cmd.Parameters.AddWithValue("@Color", oProducto.Color);
                 cmd.Parameters.AddWithValue("@Descripcion", oProducto.Descripcion);
                 cmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = oProducto.Precio ?? 0;
-                //cmd.Parameters.AddWithValue("@RutaImagen", oProducto.NombreArchivoImagen);
+                cmd.Parameters.AddWithValue("@RutaImagen", (object)oProducto.NombreArchivoImagen ?? DBNull.Value);
 
                 cnn.Open();
                 return cmd.ExecuteNonQuery();
