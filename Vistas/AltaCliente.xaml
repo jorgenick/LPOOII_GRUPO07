@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="ABM de (Clientes)" Height="371" Width="880"
         WindowStartupLocation="CenterScreen"
-        Style="{StaticResource VentanaConDegradado}">
+        Style="{StaticResource VentanaConDegradado}"
+        Loaded="Window_Loaded">
 
     <DockPanel Margin="10" Width="839">
         <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="0,0,0,20">
@@ -37,25 +38,25 @@
                     <TextBlock Text="Cancelar" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnPrimero" Style="{StaticResource BotonVerde}" ToolTip="Ir al primer cliente">
+            <Button x:Name="btnPrimero" Style="{StaticResource BotonVerde}" Click="btnPrimero_Click" ToolTip="Ir al primer cliente">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/images/iconos/primero.png" Style="{StaticResource IconoBoton}"/>
                     <TextBlock Text="Primero" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnAnterior" Style="{StaticResource BotonVerde}" ToolTip="Ir al cliente anterior">
+            <Button x:Name="btnAnterior" Style="{StaticResource BotonVerde}" Click="btnAnterior_Click" ToolTip="Ir al cliente anterior">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/images/iconos/anterior.png" Style="{StaticResource IconoBoton}"/>
                     <TextBlock Text="Anterior" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnSiguiente" Style="{StaticResource BotonVerde}" ToolTip="Ir al cliente siguiente">
+            <Button x:Name="btnSiguiente" Style="{StaticResource BotonVerde}" Click="btnSiguiente_Click" ToolTip="Ir al cliente siguiente">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/images/iconos/siguiente.png" Style="{StaticResource IconoBoton}"/>
                     <TextBlock Text="Siguiente" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnUltimo" Style="{StaticResource BotonVerde}" ToolTip="Ir al último cliente">
+            <Button x:Name="btnUltimo" Style="{StaticResource BotonVerde}" Click="btnUltimo_Click" ToolTip="Ir al último cliente">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/images/iconos/ultimo.png" Style="{StaticResource IconoBoton}"/>
                     <TextBlock Text="Último" VerticalAlignment="Center"/>

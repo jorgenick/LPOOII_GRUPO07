@@ -17,10 +17,65 @@ namespace Vistas
     public partial class AltaCliente : Window
     {
         private Cliente oCliente;
+        private List<Cliente> listaClientes;
+        private int indiceActual;
 
         public AltaCliente()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            listaClientes = TrabajarClientes.TraerClientes().ToList();
+
+            if (listaClientes.Count > 0)
+            {
+                indiceActual = 0;
+                MostrarClienteActual();
+            }
+        }
+
+        private void MostrarClienteActual()
+        {
+            Cliente c = listaClientes[indiceActual];
+
+            txtDNI.Text = c.Dni;
+            txtApellido.Text = c.Apellido;
+            txtNombre.Text = c.Nombre;
+            txtDireccion.Text = c.Direccion;
+        }
+
+        private void btnPrimero_Click(object sender, RoutedEventArgs e)
+        {
+            if (listaClientes.Count == 0) return;
+            indiceActual = 0;
+            MostrarClienteActual();
+        }
+
+        private void btnAnterior_Click(object sender, RoutedEventArgs e)
+        {
+            if (indiceActual > 0)
+            {
+                indiceActual--;
+                MostrarClienteActual();
+            }
+        }
+
+        private void btnSiguiente_Click(object sender, RoutedEventArgs e)
+        {
+            if (indiceActual < listaClientes.Count - 1)
+            {
+                indiceActual++;
+                MostrarClienteActual();
+            }
+        }
+
+        private void btnUltimo_Click(object sender, RoutedEventArgs e)
+        {
+            if (listaClientes.Count == 0) return;
+            indiceActual = listaClientes.Count - 1;
+            MostrarClienteActual();
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
