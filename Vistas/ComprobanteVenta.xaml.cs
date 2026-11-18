@@ -31,6 +31,7 @@ namespace Vistas
             grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
             StackPanel panelNegocio = new StackPanel();
             panelNegocio.Children.Add(new TextBlock { Text = "El Roble", FontSize = 22, FontWeight = FontWeights.Bold });
@@ -71,9 +72,9 @@ namespace Vistas
             Grid.SetColumn(txtVendedor, 0);
             grid.Children.Add(txtVendedor);
 
-            TextBlock txtTotal = new TextBlock { Text = "Total: $" + v.Importe.ToString("N2"), FontSize = 18, FontWeight = FontWeights.Bold, Margin = new Thickness(0, 40, 0, 0) };
-            Grid.SetRow(txtTotal, 2);
-            Grid.SetColumn(txtTotal, 1);
+            TextBlock txtTotal = new TextBlock { Text = "Total: $" + v.Importe.ToString("N2"), FontSize = 18, FontWeight = FontWeights.Bold, Margin = new Thickness(0, 10, 0, 0) };
+            Grid.SetRow(txtTotal, 3);
+            Grid.SetColumn(txtTotal, 0);
             grid.Children.Add(txtTotal);
 
             pagina.Children.Add(grid);

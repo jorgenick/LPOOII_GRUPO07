@@ -22,6 +22,9 @@ namespace Vistas
             InitializeComponent();
             dpFecha.SelectedDate = DateTime.Now;
 
+            txtNroFactura.Text = TrabajarVentas.GenerarSiguienteNroFactura().ToString();
+            txtNroFactura.IsEnabled = false;
+
             cbVendedor.ItemsSource = TrabajarVendedores.TraerColeccionVendedores();
             cbVendedor.DisplayMemberPath = "Apellido";
             cbVendedor.SelectedValuePath = "Legajo";
@@ -71,7 +74,7 @@ namespace Vistas
 
             Venta v = new Venta(
                 nroFactura,
-                fecha.ToString("yyyy-MM-dd HH:mm:ss"),
+                fecha,
                 (string)cbVendedor.SelectedValue,
                 (string)cbCliente.SelectedValue,
                 (string)cbProducto.SelectedValue,

@@ -18,7 +18,7 @@ namespace ClasesBase
             using (SqlCommand cmd = new SqlCommand(sql, cnn))
             {
                 cmd.Parameters.AddWithValue("@nroFactura", v.NroFactura);
-                cmd.Parameters.AddWithValue("@fecha", v.FechaFactura);
+                cmd.Parameters.Add("@fecha", SqlDbType.DateTime).Value = v.FechaFactura;
                 cmd.Parameters.AddWithValue("@legajo", v.Legajo);
                 cmd.Parameters.AddWithValue("@dni", v.DNI);
                 cmd.Parameters.AddWithValue("@codProducto", v.CodigoProducto);
@@ -30,5 +30,22 @@ namespace ClasesBase
                 return cmd.ExecuteNonQuery();
             }
         }
+
+        public static int GenerarSiguienteNroFactura()
+        {
+            string sql = "SELECT MAX(NroFactura) FROM Venta";
+            using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
+            using (SqlCommand cmd = new SqlCommand(sql, cnn))
+            {
+                cnn.Open();
+                object resultado = cmd.ExecuteScalar();
+
+                if (resultado == null || resultado == DBNull.Value)
+                    return 1;
+
+                return Convert.ToInt32(resultado) + 1;
+            }
+        }
+
     }
 }
