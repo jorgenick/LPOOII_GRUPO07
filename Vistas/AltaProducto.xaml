@@ -84,10 +84,11 @@
 
         <!-- Control para mostrar la foto del producto -->
         <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="10">
-            <Image x:Name="imgProducto" Width="150" Height="150" Stretch="Uniform"/>
-            <!-- Botón para buscar la imagen -->
+            <Border BorderBrush="Gray" BorderThickness="1" Width="152" Height="152" Background="#22FFFFFF">
+                <Image x:Name="imgProducto" Width="150" Height="150" Stretch="Uniform"/>
+            </Border>
             <Button x:Name="btnSeleccionarImagen" Content="Buscar Imagen..." Click="btnSeleccionarImagen_Click"
-            Width="100" Height="24" Margin="0,8,0,0" HorizontalAlignment="Center" IsEnabled="False"/>
+                    Width="110" Height="24" Margin="0,8,0,0" HorizontalAlignment="Center" IsEnabled="False"/>
         </StackPanel>
 
         <Grid VerticalAlignment="Center">
@@ -121,7 +122,7 @@
 
             <TextBlock Grid.Row="8" Grid.Column="0" Text="Precio" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
             <TextBox x:Name="txtPrecio" Text="{Binding Path=Precio, TargetNullValue='', ValidatesOnDataErrors=True, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
-         Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+                     Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
         </Grid>
     </DockPanel>
 </Window>

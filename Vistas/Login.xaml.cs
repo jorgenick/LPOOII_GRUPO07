@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using ClasesBase.Dao;
+using ClasesBase.Entidades;
 
 namespace Vistas
 {
@@ -19,11 +20,12 @@ namespace Vistas
             string usuarioIngresado = txtUsuario.Text.Trim();
             string claveIngresada = txtPassword.Password;
 
-            List<string> codigosRoles = TrabajarUsuarios.ValidarLogin(usuarioIngresado, claveIngresada);
+            Usuario usuarioLoggeado = TrabajarUsuarios.ValidarLogin(usuarioIngresado, claveIngresada);
+            List<string> codigosRoles = usuarioLoggeado.ObtenerCodigosRoles();
 
             if (codigosRoles.Count > 0)
             {
-                mostrarMenuPrincipal(codigosRoles);
+                mostrarMenuPrincipal(usuarioLoggeado);
                 this.Close();
             }
             else
@@ -42,9 +44,9 @@ namespace Vistas
             }
         }
 
-        private void mostrarMenuPrincipal(List<string> codigosRoles)
+        private void mostrarMenuPrincipal(Usuario usuarioLoggeado)
         {
-            MenuPrincipal ventana = new MenuPrincipal(codigosRoles);
+            MenuPrincipal ventana = new MenuPrincipal(usuarioLoggeado);
             ventana.Show();
         }
     }

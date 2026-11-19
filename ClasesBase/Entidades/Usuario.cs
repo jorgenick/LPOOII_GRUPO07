@@ -22,8 +22,20 @@ namespace ClasesBase.Entidades
             get
             {
                 if (Roles == null || Roles.Count == 0) return "Sin roles";
-                return string.Join(", ", Roles.Select(r => r.Rol_Descripcion).ToArray());
+                return string.Join(", ", ObtenerDescripcionesRoles().ToArray());
             }
+        }
+
+        public List<string> ObtenerCodigosRoles()
+        {
+            if (Roles == null) return new List<string>();
+            return Roles.Select(r => r.Rol_Codigo).ToList();
+        }
+
+        public List<string> ObtenerDescripcionesRoles()
+        {
+            if (Roles == null) return new List<string>();
+            return Roles.Select(r => r.Rol_Descripcion).ToList();
         }
     }
 }
