@@ -21,9 +21,8 @@ namespace Vistas
             string claveIngresada = txtPassword.Password;
 
             Usuario usuarioLoggeado = TrabajarUsuarios.ValidarLogin(usuarioIngresado, claveIngresada);
-            List<string> codigosRoles = usuarioLoggeado.ObtenerCodigosRoles();
 
-            if (codigosRoles.Count > 0)
+            if (usuarioLoggeado != null)
             {
                 mostrarMenuPrincipal(usuarioLoggeado);
                 this.Close();
