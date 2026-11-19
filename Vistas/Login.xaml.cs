@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using ClasesBase;
 
 namespace Vistas
 {
@@ -17,19 +19,11 @@ namespace Vistas
             string usuarioIngresado = txtUsuario.Text.Trim();
             string claveIngresada = txtPassword.Password;
 
-            if (usuarioIngresado == "admin" && claveIngresada == "1234")
-            {
-                /*lblMensaje.Foreground = Brushes.Green;
-                lblMensaje.Text = "Acceso concedido como Administrador.";*/
-                mostrarMenuPrincipal("Administrador");
-                this.Close();
-            }
-            else if (usuarioIngresado == "vendedor" && claveIngresada == "1234")
-            {
-                /*lblMensaje.Foreground = Brushes.Blue;
-                lblMensaje.Text = "Acceso concedido como Vendedor.";*/
-                mostrarMenuPrincipal("Vendedor");
+            List<string> codigosRoles = TrabajarUsuarios.ValidarLogin(usuarioIngresado, claveIngresada);
 
+            if (codigosRoles.Count > 0)
+            {
+                mostrarMenuPrincipal(codigosRoles);
                 this.Close();
             }
             else
@@ -46,12 +40,11 @@ namespace Vistas
                 txtPassword.Clear();
                 txtPassword.Focus();
             }
-
         }
 
-        void mostrarMenuPrincipal(String rol)
+        private void mostrarMenuPrincipal(List<string> codigosRoles)
         {
-            MenuPrincipal ventana = new MenuPrincipal(rol);
+            MenuPrincipal ventana = new MenuPrincipal(codigosRoles);
             ventana.Show();
         }
     }
