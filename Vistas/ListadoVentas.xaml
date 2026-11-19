@@ -20,7 +20,6 @@
                 <DataGridTextColumn Header="Nro. Factura" Binding="{Binding NroFactura}" Width="90"/>
                 <DataGridTextColumn Header="Fecha"        Binding="{Binding FechaFactura, StringFormat=dd/MM/yyyy}" Width="90"/>
                 <DataGridTextColumn Header="DNI"          Binding="{Binding DNI}"      Width="80"/>
-                <DataGridTextColumn Header="Cliente"      Binding="{Binding Cliente}"  Width="*"/>
                 <DataGridTextColumn Header="Vendedor"     Binding="{Binding Vendedor}" Width="*"/>
                 <DataGridTextColumn Header="Producto"     Binding="{Binding Producto}" Width="*"/>
                 <DataGridTextColumn Header="Cantidad"     Binding="{Binding Cantidad}" Width="70"/>
