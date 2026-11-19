@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.SqlClient;
+using ClasesBase.Entidades;
 
-namespace ClasesBase
+namespace ClasesBase.Dao
 {
     public class TrabajarVendedores
     {
