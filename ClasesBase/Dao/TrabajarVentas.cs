@@ -35,12 +35,14 @@ namespace ClasesBase.Dao
         public static DataTable TraerVentas()
         {
             string sql = @"SELECT v.NroFactura, v.FechaFactura,
-                                  RTRIM(c.Apellido) + ', ' + RTRIM(c.Nombre)   AS Cliente,
+                                  LTRIM(RTRIM(v.ClienteDNI)) AS DNI,
+                                  COALESCE(NULLIF(LTRIM(RTRIM(ISNULL(c.Apellido, '') + ' ' + ISNULL(c.Nombre, ''))), ''),
+                                           '(cliente no encontrado)') AS Cliente,
                                   RTRIM(ve.Apellido) + ', ' + RTRIM(ve.Nombre) AS Vendedor,
                                   RTRIM(p.Descripcion)                         AS Producto,
                                   v.Cantidad, v.Precio, v.Importe
                            FROM Venta v
-                           LEFT JOIN Cliente  c  ON c.ClienteDNI   = v.ClienteDNI
+                           LEFT JOIN Cliente  c  ON LTRIM(RTRIM(c.ClienteDNI)) = LTRIM(RTRIM(v.ClienteDNI))
                            LEFT JOIN Vendedor ve ON ve.Legajo      = v.Legajo
                            LEFT JOIN Producto p  ON p.CodProducto  = v.CodProducto
                            ORDER BY v.NroFactura DESC";
