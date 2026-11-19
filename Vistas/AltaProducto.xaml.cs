@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel; //
-using System.ComponentModel; //
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -11,8 +11,8 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes; 
-using System.Data.SqlClient; //Importa el espacio de nombres donde viven las clases para hablar con SQL Server
+using System.Windows.Shapes;
+using System.Data.SqlClient;
 using ClasesBase.Dao;
 using ClasesBase.Entidades;
 using Microsoft.Win32;
@@ -21,7 +21,7 @@ using System.IO;
 namespace Vistas
 {
     public partial class AltaProducto : Window
-    {   
+    {
         private Producto oProducto;
         private ObservableCollection<Producto> listaProductos;
         private ICollectionView vista;
@@ -33,10 +33,24 @@ namespace Vistas
             InitializeComponent();
             CargarProductos();
             HabilitarEdicion(false);
-
         }
 
-        // Carga y estado de la ventan
+        private string ObtenerCarpetaImagenes()
+        {
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory; // Ej: ...\Vistas\bin\Debug\
+            DirectoryInfo dirBin = Directory.GetParent(baseDir.TrimEnd('\\')); // Ej: ...\Vistas\bin
+
+            if (dirBin != null && dirBin.Parent != null)
+            {
+                string rutaProyecto = dirBin.Parent.FullName; // Carpeta raíz del proyecto Vistas
+                if (Directory.Exists(System.IO.Path.Combine(rutaProyecto, "images")))
+                {
+                    return System.IO.Path.Combine(rutaProyecto, "images", "imagenes-productos");
+                }
+            }
+
+            return System.IO.Path.Combine(baseDir, "imagenes-productos");
+        }
 
         private void CargarProductos()
         {
@@ -45,9 +59,12 @@ namespace Vistas
                 listaProductos = TrabajarProductos.TraerColeccionProductos();
                 vista = CollectionViewSource.GetDefaultView(listaProductos);
                 this.DataContext = listaProductos;
-                listaProductos = TrabajarProductos.TraerColeccionProductos();
-                vista = CollectionViewSource.GetDefaultView(listaProductos);
-                this.DataContext = listaProductos;
+
+                if (vista != null)
+                {
+                    vista.CurrentChanged += (s, e) => MostrarImagenActual();
+                }
+
                 MostrarImagenActual();
             }
             catch (SqlException ex)
@@ -73,10 +90,10 @@ namespace Vistas
                 return;
             }
 
-            string ruta = System.IO.Path.Combine(
-                AppDomain.CurrentDomain.BaseDirectory, "ImagenesProductos", actual.NombreArchivoImagen);
+            string soloNombre = System.IO.Path.GetFileName(actual.NombreArchivoImagen.Trim());
+            string ruta = System.IO.Path.Combine(ObtenerCarpetaImagenes(), soloNombre);
 
-            if (System.IO.File.Exists(ruta))
+            if (File.Exists(ruta))
             {
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
@@ -95,12 +112,15 @@ namespace Vistas
         {
             Producto encontrado = listaProductos.FirstOrDefault(p => p.CodProducto == codProducto);
             if (encontrado != null)
+            {
                 vista.MoveCurrentTo(encontrado);
+                MostrarImagenActual();
+            }
         }
 
-        private void HabilitarEdicion(bool editando) //me ahorra el trabajo de habilitar a cada rato 
+        private void HabilitarEdicion(bool editando)
         {
-            txtCodProducto.IsEnabled = false; // bloqueado, el codigo se genera automaticamente 
+            txtCodProducto.IsEnabled = false;
             txtCategoria.IsEnabled = editando;
             txtColor.IsEnabled = editando;
             txtDescripcion.IsEnabled = editando;
@@ -120,17 +140,17 @@ namespace Vistas
         }
 
 
-
-        // --------------------ABM
-
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             oProducto = new Producto();
             oProducto.CodProducto = TrabajarProductos.GenerarSiguienteCodigo();
+            nombreArchivoDestino = "";
+            imgProducto.Source = null;
+
             this.DataContext = oProducto;
             modoModificar = false;
             HabilitarEdicion(true);
-            txtCategoria.Focus(); // el cursor se posiciona en la categoria
+            txtCategoria.Focus();
         }
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
@@ -143,9 +163,13 @@ namespace Vistas
             }
 
             oProducto = (Producto)vista.CurrentItem;
+            nombreArchivoDestino = string.IsNullOrWhiteSpace(oProducto.NombreArchivoImagen)
+                ? ""
+                : System.IO.Path.GetFileName(oProducto.NombreArchivoImagen.Trim());
+
             modoModificar = true;
             HabilitarEdicion(true);
-            txtCodProducto.IsEnabled = false; // el código identifica la fila: no se edita
+            txtCodProducto.IsEnabled = false;
             MostrarImagenActual();
         }
 
@@ -189,8 +213,6 @@ namespace Vistas
                         MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
@@ -244,55 +266,48 @@ namespace Vistas
                     MessageBox.Show("Error al guardar: " + ex.Message, "Error",
                         MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        } // btnGuardar
-
-
+        }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            // Recarga desde la base: descarta cambios a medio editar
             modoModificar = false;
+            nombreArchivoDestino = "";
             CargarProductos();
             HabilitarEdicion(false);
         }
 
-        // NAVEGAR
-
 
         private void btnPrimero_Click(object sender, RoutedEventArgs e)
         {
+            if (vista == null) return;
             vista.MoveCurrentToFirst();
             MostrarImagenActual();
-
         }
 
         private void btnAnterior_Click(object sender, RoutedEventArgs e)
         {
+            if (vista == null) return;
             vista.MoveCurrentToPrevious();
             if (vista.IsCurrentBeforeFirst)
                 vista.MoveCurrentToLast();
             MostrarImagenActual();
-
         }
 
         private void btnSiguiente_Click(object sender, RoutedEventArgs e)
         {
+            if (vista == null) return;
             vista.MoveCurrentToNext();
             if (vista.IsCurrentAfterLast)
                 vista.MoveCurrentToFirst();
             MostrarImagenActual();
-
         }
 
         private void btnUltimo_Click(object sender, RoutedEventArgs e)
         {
+            if (vista == null) return;
             vista.MoveCurrentToLast();
             MostrarImagenActual();
-
         }
-
-
-
 
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
@@ -302,8 +317,6 @@ namespace Vistas
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             ListaDeEstados test = new ListaDeEstados();
-            //test.Show();
-            // para evitar abrir la ventana reiteradas veces
             test.Owner = this;
             test.ShowDialog();
         }
@@ -317,37 +330,28 @@ namespace Vistas
         private void btnSeleccionarImagen_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            // Filtramos para que el usuario solo elija imágenes
             openFileDialog.Filter = "Archivos de imagen (*.jpg, *.png)|*.jpg;*.png";
 
             if (openFileDialog.ShowDialog() == true)
             {
                 string rutaOrigen = openFileDialog.FileName;
-                // Obtenemos solo el nombre del archivo (ej. "silla.jpg")
                 string nombreArchivo = System.IO.Path.GetFileName(rutaOrigen);
 
-                // Armamos la ruta hacia la carpeta bin\Debug\ImagenesProductos de tu proyectoC:\DEV\LPOOII_GRUPO07\ClasesBase\TrabajarVendedores.cs
-                string carpetaDestino = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ImagenesProductos");
+                string carpetaDestino = ObtenerCarpetaImagenes();
 
-                // Si la carpeta no existe la creamos automáticamente
                 if (!Directory.Exists(carpetaDestino))
                 {
                     Directory.CreateDirectory(carpetaDestino);
                 }
 
                 string rutaDestino = System.IO.Path.Combine(carpetaDestino, nombreArchivo);
-
-                // Copiamos la imagen. El 'true' permite sobrescribir si el archivo ya existe.
                 File.Copy(rutaOrigen, rutaDestino, true);
 
-                // Guardamos el nombre en la variable global para usarla en el botón "Guardar" de tu ABM
                 nombreArchivoDestino = nombreArchivo;
 
-                // --- Cargar la imagen en el control WPF ---
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
                 bitmap.UriSource = new Uri(rutaDestino, UriKind.Absolute);
-                // CRÍTICO: CacheOption libera el archivo para que no quede bloqueado por el programa
                 bitmap.CacheOption = BitmapCacheOption.OnLoad;
                 bitmap.EndInit();
 

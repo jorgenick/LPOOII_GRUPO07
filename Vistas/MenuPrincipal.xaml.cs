@@ -10,6 +10,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClasesBase.Entidades;
+
 
 namespace Vistas
 {
@@ -19,14 +21,16 @@ namespace Vistas
     public partial class MenuPrincipal : Window
     {
         private List<string> codigosRoles;
+        private List<string> descripcionRoles;
 
-        public MenuPrincipal(List<string> codigosRoles)
+        public MenuPrincipal(Usuario usuarioLoggeado)
         {
             InitializeComponent();
 
-            this.codigosRoles = codigosRoles;
+            this.codigosRoles = usuarioLoggeado.ObtenerCodigosRoles();
+            this.descripcionRoles = usuarioLoggeado.ObtenerDescripcionesRoles();
 
-            string resumenRoles = string.Join(", ", codigosRoles.ToArray());
+            string resumenRoles = string.Join(", ", descripcionRoles.ToArray());
             lblRol.Content = "Rol: " + resumenRoles;
             System.Console.WriteLine("==============Log info roles ingresados: " + resumenRoles + "==============");
 

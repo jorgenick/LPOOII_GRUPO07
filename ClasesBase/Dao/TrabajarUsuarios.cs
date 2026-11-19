@@ -11,19 +11,19 @@ namespace ClasesBase.Dao
 {
     public class TrabajarUsuarios
     {
-        public static List<string> ValidarLogin(string nombreUsuario, string password)
+        public static Usuario ValidarLogin(string nombreUsuario, string password)
         {
-            List<string> codigosRoles = new List<string>();
+            Usuario usuarioLogueado = null;
 
             using (SqlConnection conexion = DatabaseConnectionManager.getConnection())
             {
-                // Ahora traemos el código invariable (ej. 'ADM')
                 string query = @"
-                SELECT r.Rol_Codigo 
-                FROM Usuarios u
-                INNER JOIN Usuarios_Roles ur ON u.Usu_ID = ur.Usu_ID
-                INNER JOIN Roles r ON ur.Usu_Rol = r.Rol_ID
-                WHERE u.Usu_Nombre = @user AND u.Usu_Password = @pass";
+            SELECT u.Usu_ID, u.Usu_Nombre, u.Usu_Password,
+                   r.Rol_ID, r.Rol_Codigo, r.Rol_Descripcion
+            FROM Usuarios u
+            INNER JOIN Usuarios_Roles ur ON u.Usu_ID = ur.Usu_ID
+            INNER JOIN Roles r ON ur.Usu_Rol = r.Rol_ID
+            WHERE u.Usu_Nombre = @user AND u.Usu_Password = @pass";
 
                 SqlCommand comando = new SqlCommand(query, conexion);
                 comando.Parameters.AddWithValue("@user", nombreUsuario);
@@ -34,11 +34,28 @@ namespace ClasesBase.Dao
                 {
                     while (reader.Read())
                     {
-                        codigosRoles.Add(reader["Rol_Codigo"].ToString());
+                        if (usuarioLogueado == null)
+                        {
+                            usuarioLogueado = new Usuario
+                            {
+                                Usu_ID = Convert.ToInt32(reader["Usu_ID"]),
+                                Usu_Nombre = reader["Usu_Nombre"].ToString(),
+                                Usu_Password = reader["Usu_Password"].ToString(),
+                                Roles = new List<Rol>()
+                            };
+                        }
+
+                        usuarioLogueado.Roles.Add(new Rol
+                        {
+                            Rol_ID = Convert.ToInt32(reader["Rol_ID"]),
+                            Rol_Codigo = reader["Rol_Codigo"].ToString(),
+                            Rol_Descripcion = reader["Rol_Descripcion"].ToString()
+                        });
                     }
                 }
             }
-            return codigosRoles;
+
+            return usuarioLogueado;
         }
 
         public static ObservableCollection<Usuario> TraerUsuarios()
