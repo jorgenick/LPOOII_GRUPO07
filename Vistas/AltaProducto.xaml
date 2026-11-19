@@ -83,10 +83,12 @@
         </Button>
 
         <!-- Control para mostrar la foto del producto -->
-        <Image x:Name="imgProducto" Width="150" Height="150" Stretch="Uniform" Margin="10"/>
-
-        <!-- Botón para buscar la imagen -->
-        <Button x:Name="btnSeleccionarImagen" Content="Buscar Imagen..." Click="btnSeleccionarImagen_Click" Width="120" Height="30"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="10">
+            <Image x:Name="imgProducto" Width="150" Height="150" Stretch="Uniform"/>
+            <!-- Botón para buscar la imagen -->
+            <Button x:Name="btnSeleccionarImagen" Content="Buscar Imagen..." Click="btnSeleccionarImagen_Click"
+            Width="100" Height="24" Margin="0,8,0,0" HorizontalAlignment="Center" IsEnabled="False"/>
+        </StackPanel>
 
         <Grid VerticalAlignment="Center">
             <Grid.RowDefinitions>

@@ -44,11 +44,49 @@ namespace Vistas
                 listaProductos = TrabajarProductos.TraerColeccionProductos();
                 vista = CollectionViewSource.GetDefaultView(listaProductos);
                 this.DataContext = listaProductos;
+                listaProductos = TrabajarProductos.TraerColeccionProductos();
+                vista = CollectionViewSource.GetDefaultView(listaProductos);
+                this.DataContext = listaProductos;
+                MostrarImagenActual();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("No se pudieron cargar los productos: " + ex.Message, "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void MostrarImagenActual()
+        {
+            if (vista == null || vista.CurrentItem == null)
+            {
+                imgProducto.Source = null;
+                return;
+            }
+
+            Producto actual = (Producto)vista.CurrentItem;
+
+            if (string.IsNullOrWhiteSpace(actual.NombreArchivoImagen))
+            {
+                imgProducto.Source = null;
+                return;
+            }
+
+            string ruta = System.IO.Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory, "ImagenesProductos", actual.NombreArchivoImagen);
+
+            if (System.IO.File.Exists(ruta))
+            {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(ruta, UriKind.Absolute);
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.EndInit();
+                imgProducto.Source = bitmap;
+            }
+            else
+            {
+                imgProducto.Source = null;
             }
         }
 
@@ -66,6 +104,7 @@ namespace Vistas
             txtColor.IsEnabled = editando;
             txtDescripcion.IsEnabled = editando;
             txtPrecio.IsEnabled = editando;
+            btnSeleccionarImagen.IsEnabled = editando;
 
             btnGuardar.IsEnabled = editando;
             btnCancelar.IsEnabled = editando;
@@ -106,6 +145,7 @@ namespace Vistas
             modoModificar = true;
             HabilitarEdicion(true);
             txtCodProducto.IsEnabled = false; // el código identifica la fila: no se edita
+            MostrarImagenActual();
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
@@ -161,6 +201,8 @@ namespace Vistas
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+
+            oProducto.NombreArchivoImagen = nombreArchivoDestino;
 
             MessageBoxResult confirmacion = MessageBox.Show(
                 "¿Confirma guardar los datos ingresados?",
@@ -219,6 +261,8 @@ namespace Vistas
         private void btnPrimero_Click(object sender, RoutedEventArgs e)
         {
             vista.MoveCurrentToFirst();
+            MostrarImagenActual();
+
         }
 
         private void btnAnterior_Click(object sender, RoutedEventArgs e)
@@ -226,6 +270,8 @@ namespace Vistas
             vista.MoveCurrentToPrevious();
             if (vista.IsCurrentBeforeFirst)
                 vista.MoveCurrentToLast();
+            MostrarImagenActual();
+
         }
 
         private void btnSiguiente_Click(object sender, RoutedEventArgs e)
@@ -233,11 +279,15 @@ namespace Vistas
             vista.MoveCurrentToNext();
             if (vista.IsCurrentAfterLast)
                 vista.MoveCurrentToFirst();
+            MostrarImagenActual();
+
         }
 
         private void btnUltimo_Click(object sender, RoutedEventArgs e)
         {
             vista.MoveCurrentToLast();
+            MostrarImagenActual();
+
         }
 
 

@@ -8,7 +8,7 @@ namespace ClasesBase
     public class Venta
     {
         public int NroFactura { get; set; }
-        public string FechaFactura { get; set; }
+        public DateTime FechaFactura { get; set; }
         public string Legajo { get; set; }
         public string DNI { get; set; }
         public string CodigoProducto { get; set; }
@@ -16,7 +16,7 @@ namespace ClasesBase
         public int Cantidad { get; set; }
         public decimal Importe { get; set; }
 
-        public Venta(int nroFactura, string fechaFactura, string legajo, string dni, string codigoProducto, decimal precio, int cantidad, decimal importe)
+        public Venta(int nroFactura, DateTime fechaFactura, string legajo, string dni, string codigoProducto, decimal precio, int cantidad, decimal importe)
         {
             this.NroFactura = nroFactura;
             this.FechaFactura = fechaFactura;

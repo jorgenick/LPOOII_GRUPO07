@@ -37,35 +37,31 @@ namespace Vistas
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             AltaCliente ventana = new AltaCliente();
-            ventana.Show();
-            //this.Close();
+            ventana.ShowDialog();
         }
 
         private void btnProvedor_Click(object sender, RoutedEventArgs e)
         {
             AltaProveedor ventana = new AltaProveedor();
-            ventana.Show();
-            //this.Close();
+            ventana.ShowDialog();
         }
 
         private void btnProducto_Click(object sender, RoutedEventArgs e)
         {
             AltaProducto ventana = new AltaProducto();
-            ventana.Show();
-            //this.Close();
+            ventana.ShowDialog();
         }
 
         private void btnVendedor_Click(object sender, RoutedEventArgs e)
         {
             AltaVendedor ventana = new AltaVendedor();
-            ventana.Show();
-            //this.Close();
+            ventana.ShowDialog();
         }
 
         private void btnCliente_Click(object sender, RoutedEventArgs e)
         {
             AbmClientes ventanaClientes = new AbmClientes();
-            ventanaClientes.Show();
+            ventanaClientes.ShowDialog();
         }
 
         private void btn_CerrarSesion(object sender, RoutedEventArgs e)
@@ -87,19 +83,19 @@ namespace Vistas
         private void btnListadoClientes_Click(object sender, RoutedEventArgs e)
         {
             ListadoClientes ventanaListadoClientes = new ListadoClientes();
-            ventanaListadoClientes.Show();
+            ventanaListadoClientes.ShowDialog();
         }
 
         private void btnVentas_Click(object sender, RoutedEventArgs e)
         {
             AltaVenta ventana = new AltaVenta();
-            ventana.Show();
+            ventana.ShowDialog();
         }
 
         private void btnAcercaDe_Click(object sender, RoutedEventArgs e)
         {
             AcercaDe ventana = new AcercaDe();
-            ventana.Show();
+            ventana.ShowDialog();
         }
 
     }
