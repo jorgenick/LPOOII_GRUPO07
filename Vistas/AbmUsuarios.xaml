@@ -1,0 +1,103 @@
+﻿<Window x:Class="Vistas.AbmUsuarios"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ABM de Usuarios" Height="450" Width="880"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource VentanaConDegradado}"
+        Loaded="Window_Loaded">
+
+    <DockPanel Margin="10" Width="839">
+        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="0,0,0,20">
+            <Button x:Name="btnNuevo" Style="{StaticResource BotonRojo}" Click="btnNuevo_Click" ToolTip="Crear un nuevo usuario">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/iconos/nuevo.png" Style="{StaticResource IconoBoton}"/>
+                    <TextBlock Text="Nuevo" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnModificar" Style="{StaticResource BotonRojo}" Click="btnModificar_Click" ToolTip="Modificar el usuario seleccionado">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/iconos/modificar.png" Style="{StaticResource IconoBoton}"/>
+                    <TextBlock Text="Modificar" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnEliminar" Style="{StaticResource BotonRojo}" Click="btnEliminar_Click" ToolTip="Eliminar el usuario seleccionado">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/iconos/eliminar.png" Style="{StaticResource IconoBoton}"/>
+                    <TextBlock Text="Eliminar" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnGuardar" Style="{StaticResource BotonAzul}" IsEnabled="False" Click="btnGuardar_Click" ToolTip="Guardar los datos del usuario">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/iconos/guardar.png" Style="{StaticResource IconoBoton}"/>
+                    <TextBlock Text="Guardar" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnCancelar" Style="{StaticResource BotonAzul}" IsEnabled="False" Click="btnCancelar_Click" ToolTip="Cancelar la operación en curso">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/iconos/cancelar.png" Style="{StaticResource IconoBoton}"/>
+                    <TextBlock Text="Cancelar" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnPrimero" Style="{StaticResource BotonVerde}" Click="btnPrimero_Click" ToolTip="Ir al primer usuario">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/iconos/primero.png" Style="{StaticResource IconoBoton}"/>
+                    <TextBlock Text="Primero" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnAnterior" Style="{StaticResource BotonVerde}" Click="btnAnterior_Click" ToolTip="Ir al usuario anterior">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/iconos/anterior.png" Style="{StaticResource IconoBoton}"/>
+                    <TextBlock Text="Anterior" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnSiguiente" Style="{StaticResource BotonVerde}" Click="btnSiguiente_Click" ToolTip="Ir al usuario siguiente">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/iconos/siguiente.png" Style="{StaticResource IconoBoton}"/>
+                    <TextBlock Text="Siguiente" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnUltimo" Style="{StaticResource BotonVerde}" Click="btnUltimo_Click" ToolTip="Ir al último usuario">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/iconos/ultimo.png" Style="{StaticResource IconoBoton}"/>
+                    <TextBlock Text="Último" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </WrapPanel>
+
+        <Button x:Name="btnSalir" DockPanel.Dock="Bottom" Style="{StaticResource BotonSalir}" HorizontalAlignment="Right" Click="btnSalir_Click" ToolTip="Cerrar esta ventana">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/images/iconos/salir.png" Style="{StaticResource IconoBoton}"/>
+                <TextBlock Text="Salir" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+
+        <Grid VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="ID Usuario" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBox x:Name="txtId" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Nombre de Usuario" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBox x:Name="txtNombre" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Contraseña" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBox x:Name="txtPassword" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="False" Style="{StaticResource TextBoxABM}"/>
+
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Roles Asignados" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"/>
+            <ListBox x:Name="lstRoles" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" Width="250" Height="100"
+                     IsEnabled="False" SelectionMode="Multiple" DisplayMemberPath="Rol_Descripcion"/>
+        </Grid>
+    </DockPanel>
+</Window>

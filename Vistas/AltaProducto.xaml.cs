@@ -13,7 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes; 
 using System.Data.SqlClient; //Importa el espacio de nombres donde viven las clases para hablar con SQL Server
-using ClasesBase;
+using ClasesBase.Dao;
+using ClasesBase.Entidades;
 using Microsoft.Win32;
 using System.IO;
 

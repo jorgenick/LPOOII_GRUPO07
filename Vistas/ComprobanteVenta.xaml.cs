@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Controls;
-using ClasesBase;
+using ClasesBase.Entidades;
 
 namespace Vistas
 {

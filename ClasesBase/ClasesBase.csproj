@@ -55,33 +55,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cliente.cs" />
+    <Compile Include="Dao\TrabajarRoles.cs" />
+    <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="DatabaseConnectionManager.cs" />
     <Compile Include="muebleriaDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>muebleriaDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Producto.cs" />
+    <Compile Include="Entidades\Producto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Proveedor.cs" />
-    <Compile Include="TrabajarClientes.cs" />
-    <Compile Include="TrabajarProductos.cs" />
-    <Compile Include="TrabajarProveedores.cs" />
-    <Compile Include="TrabajarUsuarios.cs" />
-    <Compile Include="TrabajarVendedores.cs" />
-    <Compile Include="TrabajarVentas.cs" />
-    <Compile Include="Vendedor.cs" />
-    <Compile Include="Venta.cs" />
+    <Compile Include="Entidades\Proveedor.cs" />
+    <Compile Include="Entidades\Rol.cs" />
+    <Compile Include="Dao\TrabajarClientes.cs" />
+    <Compile Include="Dao\TrabajarProductos.cs" />
+    <Compile Include="Dao\TrabajarProveedores.cs" />
+    <Compile Include="Dao\TrabajarUsuarios.cs" />
+    <Compile Include="Dao\TrabajarVendedores.cs" />
+    <Compile Include="Dao\TrabajarVentas.cs" />
+    <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="Entidades\Vendedor.cs" />
+    <Compile Include="Entidades\Venta.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config">
       <SubType>Designer</SubType>

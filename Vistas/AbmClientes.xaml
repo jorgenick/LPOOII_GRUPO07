@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Vistas.AbmClientes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:svc="clr-namespace:ClasesBase;assembly=ClasesBase"
+        xmlns:svc="clr-namespace:ClasesBase.Dao;assembly=ClasesBase"
         Title="AbmClientes" Height="396" Width="672" Loaded="Window_Loaded"
         Style="{StaticResource VentanaConDegradado}">
     

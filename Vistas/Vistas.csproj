@@ -59,6 +59,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AbmUsuarios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AcercaDe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -117,6 +121,9 @@
     </Page>
     <Compile Include="AbmClientes.xaml.cs">
       <DependentUpon>AbmClientes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AbmUsuarios.xaml.cs">
+      <DependentUpon>AbmUsuarios.xaml</DependentUpon>
     </Compile>
     <Compile Include="AcercaDe.xaml.cs">
       <DependentUpon>AcercaDe.xaml</DependentUpon>

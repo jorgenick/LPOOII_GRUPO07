@@ -36,10 +36,12 @@ namespace Vistas
         private void ConfigurarPermisos()
         {
             this.btnVendedor.Visibility = System.Windows.Visibility.Hidden;
+            this.btnAltaUsuarios.Visibility = System.Windows.Visibility.Hidden;
 
             if (codigosRoles.Contains("ADMI"))
             {
                 this.btnVendedor.Visibility = System.Windows.Visibility.Visible;
+                this.btnAltaUsuarios.Visibility = System.Windows.Visibility.Visible;
             }
 
             if (codigosRoles.Contains("AUDI") && !codigosRoles.Contains("ADMI"))
@@ -109,6 +111,12 @@ namespace Vistas
         private void btnAcercaDe_Click(object sender, RoutedEventArgs e)
         {
             AcercaDe ventana = new AcercaDe();
+            ventana.ShowDialog();
+        }
+
+        private void btnAltaUsuarios_Click(object sender, RoutedEventArgs e)
+        {
+            AbmUsuarios ventana = new AbmUsuarios();
             ventana.ShowDialog();
         }
     }

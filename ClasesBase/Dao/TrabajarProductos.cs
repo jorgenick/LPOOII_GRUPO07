@@ -5,8 +5,9 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using System.Collections.ObjectModel;
+using ClasesBase.Entidades;
 
-namespace ClasesBase
+namespace ClasesBase.Dao
 {
     public class TrabajarProductos
     {

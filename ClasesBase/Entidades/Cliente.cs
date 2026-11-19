@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 
-namespace ClasesBase
+namespace ClasesBase.Entidades
 {
     public class Cliente : INotifyPropertyChanged
     {

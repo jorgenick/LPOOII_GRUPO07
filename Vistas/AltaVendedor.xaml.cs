@@ -14,7 +14,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.SqlClient;
 
-using ClasesBase;
+using ClasesBase.Dao;
+using ClasesBase.Entidades;
+
 
 namespace Vistas
 {
