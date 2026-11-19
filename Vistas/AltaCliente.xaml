@@ -14,13 +14,13 @@
                     <TextBlock Text="Nuevo" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnModificar" Style="{StaticResource BotonRojo}" ToolTip="Modificar el cliente seleccionado">
+            <Button x:Name="btnModificar" Style="{StaticResource BotonRojo}" Click="btnModificar_Click" ToolTip="Modificar el cliente seleccionado">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/images/iconos/modificar.png" Style="{StaticResource IconoBoton}"/>
                     <TextBlock Text="Modificar" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnEliminar" Style="{StaticResource BotonRojo}" ToolTip="Eliminar el cliente seleccionado">
+            <Button x:Name="btnEliminar" Style="{StaticResource BotonRojo}" Click="btnEliminar_Click" ToolTip="Eliminar el cliente seleccionado">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/images/iconos/eliminar.png" Style="{StaticResource IconoBoton}"/>
                     <TextBlock Text="Eliminar" VerticalAlignment="Center"/>
