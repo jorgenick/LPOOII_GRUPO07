@@ -106,6 +106,12 @@ namespace Vistas
             ventanaListadoClientes.ShowDialog();
         }
 
+        private void btnListadoVentas_Click(object sender, RoutedEventArgs e)
+        {
+            ListadoVentas ventana = new ListadoVentas();
+            ventana.ShowDialog();
+        }
+
         private void btnVentas_Click(object sender, RoutedEventArgs e)
         {
             AltaVenta ventana = new AltaVenta();

@@ -111,6 +111,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ListadoVentas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ListadoProductos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -162,6 +166,9 @@
     </Compile>
     <Compile Include="VistaPreviaClientes.xaml.cs">
       <DependentUpon>VistaPreviaClientes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoVentas.xaml.cs">
+      <DependentUpon>ListadoVentas.xaml</DependentUpon>
     </Compile>
     <Compile Include="ListadoProductos.xaml.cs">
       <DependentUpon>ListadoProductos.xaml</DependentUpon>
