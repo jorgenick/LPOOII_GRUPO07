@@ -18,19 +18,32 @@ namespace Vistas
     /// </summary>
     public partial class MenuPrincipal : Window
     {
-        private string rol;
+        private List<string> codigosRoles;
 
-        public MenuPrincipal(string rol)
+        public MenuPrincipal(List<string> codigosRoles)
         {
             InitializeComponent();
 
+            this.codigosRoles = codigosRoles;
 
-            this.rol = rol;
-            lblRol.Content = "Rol: " + rol;
-            System.Console.WriteLine("==============Log info rol ingresado:" + rol + "==============");
-            if (rol.ToLower().Equals("vendedor"))
+            string resumenRoles = string.Join(", ", codigosRoles.ToArray());
+            lblRol.Content = "Rol: " + resumenRoles;
+            System.Console.WriteLine("==============Log info roles ingresados: " + resumenRoles + "==============");
+
+            ConfigurarPermisos();
+        }
+
+        private void ConfigurarPermisos()
+        {
+            this.btnVendedor.Visibility = System.Windows.Visibility.Hidden;
+
+            if (codigosRoles.Contains("ADMI"))
             {
-                this.btnVendedor.Visibility = System.Windows.Visibility.Hidden;
+                this.btnVendedor.Visibility = System.Windows.Visibility.Visible;
+            }
+
+            if (codigosRoles.Contains("AUDI") && !codigosRoles.Contains("ADMI"))
+            {
             }
         }
 
@@ -67,9 +80,10 @@ namespace Vistas
         private void btn_CerrarSesion(object sender, RoutedEventArgs e)
         {
             MessageBoxResult resultado = MessageBox.Show(
-            "¿Está seguro que desea cerrar la sesión?", "Confirmar Cierre de Sesión",
-          MessageBoxButton.YesNo,
-          MessageBoxImage.Question
+                "¿Está seguro que desea cerrar la sesión?",
+                "Confirmar Cierre de Sesión",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
             );
 
             if (resultado == MessageBoxResult.Yes)
@@ -97,6 +111,5 @@ namespace Vistas
             AcercaDe ventana = new AcercaDe();
             ventana.ShowDialog();
         }
-
     }
 }
