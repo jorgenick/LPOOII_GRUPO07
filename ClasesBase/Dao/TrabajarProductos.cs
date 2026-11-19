@@ -13,19 +13,20 @@ namespace ClasesBase.Dao
     {
         public static DataTable TraerProductos()
         {
-            using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
-            {
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "SELECT CodProducto, Categoria, Color, Descripcion, Precio, RutaImagen FROM Producto ORDER BY CodProducto";
-                cmd.CommandType = CommandType.Text;
-                cmd.Connection = cnn;
+            //Conexion
+            SqlConnection cnn = DatabaseConnectionManager.getConnection();
+            //Consulta
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT CodProducto, Categoria, Color, Descripcion, Precio, RutaImagen FROM Producto WHERE Activo = 1 ORDER BY CodProducto";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cnn;
 
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
+            //DataAdapter
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
 
-                return dt;
-            }
+            return dt;
         }
 
         public static int InsertarProducto(Producto oProducto)
@@ -42,12 +43,12 @@ namespace ClasesBase.Dao
                 cmd.Parameters.AddWithValue("@Color", oProducto.Color);
                 cmd.Parameters.AddWithValue("@Descripcion", oProducto.Descripcion);
                 cmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = oProducto.Precio ?? 0;
-                cmd.Parameters.AddWithValue("@RutaImagen", string.IsNullOrWhiteSpace(oProducto.NombreArchivoImagen) ? (object)DBNull.Value : oProducto.NombreArchivoImagen.Trim());
+                cmd.Parameters.AddWithValue("@RutaImagen", (object)oProducto.NombreArchivoImagen ?? DBNull.Value);
 
                 cnn.Open();
                 return cmd.ExecuteNonQuery();
             }
-        }
+        }//insertar
 
         public static ObservableCollection<Producto> TraerColeccionProductos()
         {
@@ -57,12 +58,12 @@ namespace ClasesBase.Dao
             foreach (DataRow fila in dt.Rows)
             {
                 Producto p = new Producto();
-                p.CodProducto = fila["CodProducto"].ToString().Trim();
-                p.Categoria = fila["Categoria"].ToString().Trim();
-                p.Color = fila["Color"].ToString().Trim();
-                p.Descripcion = fila["Descripcion"].ToString().Trim();
+                p.CodProducto = fila["CodProducto"].ToString();
+                p.Categoria = fila["Categoria"].ToString();
+                p.Color = fila["Color"].ToString();
+                p.Descripcion = fila["Descripcion"].ToString();
                 p.Precio = Convert.ToDecimal(fila["Precio"]);
-                p.NombreArchivoImagen = fila["RutaImagen"] == DBNull.Value ? null : fila["RutaImagen"].ToString().Trim();
+                p.NombreArchivoImagen = fila["RutaImagen"] == DBNull.Value ? null : fila["RutaImagen"].ToString();
                 lista.Add(p);
             }
             return lista;
@@ -82,7 +83,7 @@ namespace ClasesBase.Dao
                 cmd.Parameters.AddWithValue("@Color", oProducto.Color);
                 cmd.Parameters.AddWithValue("@Descripcion", oProducto.Descripcion);
                 cmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = oProducto.Precio ?? 0;
-                cmd.Parameters.AddWithValue("@RutaImagen", string.IsNullOrWhiteSpace(oProducto.NombreArchivoImagen) ? (object)DBNull.Value : oProducto.NombreArchivoImagen.Trim());
+                cmd.Parameters.AddWithValue("@RutaImagen", (object)oProducto.NombreArchivoImagen ?? DBNull.Value);
 
                 cnn.Open();
                 return cmd.ExecuteNonQuery();
@@ -91,7 +92,7 @@ namespace ClasesBase.Dao
 
         public static int EliminarProducto(string codProducto)
         {
-            string sql = "DELETE FROM Producto WHERE CodProducto = @CodProducto";
+            string sql = "UPDATE Producto SET Activo = 0 WHERE CodProducto = @CodProducto";
 
             using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlCommand cmd = new SqlCommand(sql, cnn))
@@ -102,6 +103,7 @@ namespace ClasesBase.Dao
             }
         }
 
+        // metodo para generar un siguiente codigo de producto
         public static string GenerarSiguienteCodigo()
         {
             string sql = "SELECT MAX(CodProducto) FROM Producto";
@@ -112,19 +114,23 @@ namespace ClasesBase.Dao
                 object resultado = cmd.ExecuteScalar();
 
                 if (resultado == null || resultado == DBNull.Value)
-                    return "P001";
+                    return "P001"; //  si la tabla esta vacia se retorna P001
 
-                string ultimoCodigo = resultado.ToString().Trim();
+                string ultimoCodigo = resultado.ToString().Trim(); // extraemos ultimo codigo
+                // extraemos solo parte numerica
                 string parteNumerica = ultimoCodigo.StartsWith("P") ? ultimoCodigo.Substring(1) : ultimoCodigo;
 
+                // incrementamos y se formatea el numero
                 int numero;
                 if (int.TryParse(parteNumerica, out numero))
                 {
-                    return "P" + (numero + 1).ToString("D3");
+                    return "P" + (numero + 1).ToString("D3"); // Devuelve "P006"
                 }
 
                 return "P001";
             }
         }
+
+
     }
 }

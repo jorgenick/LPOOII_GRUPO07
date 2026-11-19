@@ -15,7 +15,7 @@ namespace ClasesBase.Dao
         public static ObservableCollection<Vendedor> TraerColeccionVendedores()
         {
             ObservableCollection<Vendedor> lista = new ObservableCollection<Vendedor>();
-            string sql = "SELECT Legajo, Apellido, Nombre FROM Vendedor ORDER BY Apellido, Nombre";
+            string sql = "SELECT Legajo, Apellido, Nombre FROM Vendedor WHERE Activo = 1 ORDER BY Apellido, Nombre";
 
             using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlDataAdapter da = new SqlDataAdapter(sql, cnn))
@@ -37,18 +37,32 @@ namespace ClasesBase.Dao
 
         public static int InsertarVendedor(Vendedor oVendedor)
         {
+            // Si el legajo existe dado de baja (Activo = 0), se reactiva con los datos nuevos
+            string sqlReactivar = "UPDATE Vendedor SET Apellido = @Apellido, Nombre = @Nombre, Activo = 1 " +
+                                  "WHERE Legajo = @Legajo AND Activo = 0";
             string sql = "INSERT INTO Vendedor (Legajo, Apellido, Nombre) " +
                          "VALUES (@Legajo, @Apellido, @Nombre)";
 
             using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
-            using (SqlCommand cmd = new SqlCommand(sql, cnn))
             {
-                cmd.Parameters.AddWithValue("@Legajo", oVendedor.Legajo);
-                cmd.Parameters.AddWithValue("@Apellido", oVendedor.Apellido);
-                cmd.Parameters.AddWithValue("@Nombre", oVendedor.Nombre);
-
                 cnn.Open();
-                return cmd.ExecuteNonQuery();
+
+                using (SqlCommand cmdR = new SqlCommand(sqlReactivar, cnn))
+                {
+                    cmdR.Parameters.AddWithValue("@Legajo", oVendedor.Legajo);
+                    cmdR.Parameters.AddWithValue("@Apellido", oVendedor.Apellido);
+                    cmdR.Parameters.AddWithValue("@Nombre", oVendedor.Nombre);
+                    int reactivados = cmdR.ExecuteNonQuery();
+                    if (reactivados > 0) return reactivados;
+                }
+
+                using (SqlCommand cmd = new SqlCommand(sql, cnn))
+                {
+                    cmd.Parameters.AddWithValue("@Legajo", oVendedor.Legajo);
+                    cmd.Parameters.AddWithValue("@Apellido", oVendedor.Apellido);
+                    cmd.Parameters.AddWithValue("@Nombre", oVendedor.Nombre);
+                    return cmd.ExecuteNonQuery();
+                }
             }
         }
 
@@ -71,7 +85,7 @@ namespace ClasesBase.Dao
 
         public static int EliminarVendedor(string legajo)
         {
-            string sql = "DELETE FROM Vendedor WHERE Legajo = @Legajo";
+            string sql = "UPDATE Vendedor SET Activo = 0 WHERE Legajo = @Legajo";
 
             using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlCommand cmd = new SqlCommand(sql, cnn))
