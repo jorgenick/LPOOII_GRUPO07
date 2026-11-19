@@ -14,7 +14,7 @@ namespace ClasesBase.Dao
         public static DataTable TraerProveedoresDataTable()
         {
             DataTable dt = new DataTable();
-            string sql = "SELECT ProveedorCUIT, RazonSocial, Domicilio, Telefono FROM Proveedor ORDER BY RazonSocial ASC";
+            string sql = "SELECT ProveedorCUIT, RazonSocial, Domicilio, Telefono FROM Proveedor WHERE Activo = 1 ORDER BY RazonSocial ASC";
 
             using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlDataAdapter da = new SqlDataAdapter(sql, cnn))
@@ -44,19 +44,34 @@ namespace ClasesBase.Dao
 
         public static int InsertarProveedor(Proveedor oProveedor)
         {
+            // Si el CUIT existe dado de baja (Activo = 0), se reactiva con los datos nuevos
+            string sqlReactivar = "UPDATE Proveedor SET RazonSocial = @RazonSocial, Domicilio = @Domicilio, Telefono = @Telefono, Activo = 1 " +
+                                  "WHERE ProveedorCUIT = @ProveedorCUIT AND Activo = 0";
             string sql = "INSERT INTO Proveedor (ProveedorCUIT, RazonSocial, Domicilio, Telefono) " +
                          "VALUES (@ProveedorCUIT, @RazonSocial, @Domicilio, @Telefono)";
 
             using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
-            using (SqlCommand cmd = new SqlCommand(sql, cnn))
             {
-                cmd.Parameters.AddWithValue("@ProveedorCUIT", oProveedor.CUIT);
-                cmd.Parameters.AddWithValue("@RazonSocial", oProveedor.RazonSocial);
-                cmd.Parameters.AddWithValue("@Domicilio", oProveedor.Domicilio);
-                cmd.Parameters.AddWithValue("@Telefono", oProveedor.Telefono);
-
                 cnn.Open();
-                return cmd.ExecuteNonQuery();
+
+                using (SqlCommand cmdR = new SqlCommand(sqlReactivar, cnn))
+                {
+                    cmdR.Parameters.AddWithValue("@ProveedorCUIT", oProveedor.CUIT);
+                    cmdR.Parameters.AddWithValue("@RazonSocial", oProveedor.RazonSocial);
+                    cmdR.Parameters.AddWithValue("@Domicilio", oProveedor.Domicilio);
+                    cmdR.Parameters.AddWithValue("@Telefono", oProveedor.Telefono);
+                    int reactivados = cmdR.ExecuteNonQuery();
+                    if (reactivados > 0) return reactivados;
+                }
+
+                using (SqlCommand cmd = new SqlCommand(sql, cnn))
+                {
+                    cmd.Parameters.AddWithValue("@ProveedorCUIT", oProveedor.CUIT);
+                    cmd.Parameters.AddWithValue("@RazonSocial", oProveedor.RazonSocial);
+                    cmd.Parameters.AddWithValue("@Domicilio", oProveedor.Domicilio);
+                    cmd.Parameters.AddWithValue("@Telefono", oProveedor.Telefono);
+                    return cmd.ExecuteNonQuery();
+                }
             }
         }
 
@@ -80,7 +95,7 @@ namespace ClasesBase.Dao
 
         public static int EliminarProveedor(string cuit)
         {
-            string sql = "DELETE FROM Proveedor WHERE ProveedorCUIT = @ProveedorCUIT";
+            string sql = "UPDATE Proveedor SET Activo = 0 WHERE ProveedorCUIT = @ProveedorCUIT";
 
             using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlCommand cmd = new SqlCommand(sql, cnn))

@@ -33,7 +33,7 @@ namespace ClasesBase.Dao
         public static DataTable TraerClientesDataTable()
         {
             DataTable dataTableClientes = new DataTable();
-            string sql = "SELECT ClienteDNI, Apellido, Nombre, Direccion FROM Cliente ORDER BY Apellido ASC";
+            string sql = "SELECT ClienteDNI, Apellido, Nombre, Direccion FROM Cliente WHERE Activo = 1 ORDER BY Apellido ASC";
 
             using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
 
@@ -48,18 +48,32 @@ namespace ClasesBase.Dao
         // Agregar un Cliente a la Base de Datos
         public static void AgregarCliente(Cliente oCliente)
         {
+            // Si el DNI existe dado de baja (Activo = 0), se reactiva con los datos nuevos
+            string sqlReactivar = "UPDATE Cliente SET Apellido = @apellido, Nombre = @nombre, Direccion = @direccion, Activo = 1 " +
+                                  "WHERE ClienteDNI = @dni AND Activo = 0";
             string sql = "INSERT INTO Cliente (ClienteDNI, Apellido, Nombre, Direccion) VALUES (@dni, @apellido, @nombre, @direccion)";
 
             using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
-            using (SqlCommand cmd = new SqlCommand(sql, cnn))
             {
-                cmd.Parameters.AddWithValue("@dni", oCliente.Dni);
-                cmd.Parameters.AddWithValue("@apellido", oCliente.Apellido);
-                cmd.Parameters.AddWithValue("@nombre", oCliente.Nombre);
-                cmd.Parameters.AddWithValue("@direccion", oCliente.Direccion);
-
                 cnn.Open();
-                cmd.ExecuteNonQuery();
+
+                using (SqlCommand cmdR = new SqlCommand(sqlReactivar, cnn))
+                {
+                    cmdR.Parameters.AddWithValue("@dni", oCliente.Dni);
+                    cmdR.Parameters.AddWithValue("@apellido", oCliente.Apellido);
+                    cmdR.Parameters.AddWithValue("@nombre", oCliente.Nombre);
+                    cmdR.Parameters.AddWithValue("@direccion", oCliente.Direccion);
+                    if (cmdR.ExecuteNonQuery() > 0) return;
+                }
+
+                using (SqlCommand cmd = new SqlCommand(sql, cnn))
+                {
+                    cmd.Parameters.AddWithValue("@dni", oCliente.Dni);
+                    cmd.Parameters.AddWithValue("@apellido", oCliente.Apellido);
+                    cmd.Parameters.AddWithValue("@nombre", oCliente.Nombre);
+                    cmd.Parameters.AddWithValue("@direccion", oCliente.Direccion);
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 
@@ -81,10 +95,10 @@ namespace ClasesBase.Dao
             }
         }
 
-        //  Eliminar un Cliente de la Base de Datos
+        //  Baja logica de un Cliente (Activo = 0)
         public static void EliminarCliente(string dni)
         {
-            string sql = "DELETE FROM Cliente WHERE ClienteDNI = @dni";
+            string sql = "UPDATE Cliente SET Activo = 0 WHERE ClienteDNI = @dni";
 
             using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlCommand cmd = new SqlCommand(sql, cnn))

@@ -17,7 +17,7 @@ namespace ClasesBase.Dao
             SqlConnection cnn = DatabaseConnectionManager.getConnection();
             //Consulta
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT CodProducto, Categoria, Color, Descripcion, Precio, RutaImagen FROM Producto ORDER BY CodProducto";
+            cmd.CommandText = "SELECT CodProducto, Categoria, Color, Descripcion, Precio, RutaImagen FROM Producto WHERE Activo = 1 ORDER BY CodProducto";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = cnn;
 
@@ -92,7 +92,7 @@ namespace ClasesBase.Dao
 
         public static int EliminarProducto(string codProducto)
         {
-            string sql = "DELETE FROM Producto WHERE CodProducto = @CodProducto";
+            string sql = "UPDATE Producto SET Activo = 0 WHERE CodProducto = @CodProducto";
 
             using (SqlConnection cnn = DatabaseConnectionManager.getConnection())
             using (SqlCommand cmd = new SqlCommand(sql, cnn))
